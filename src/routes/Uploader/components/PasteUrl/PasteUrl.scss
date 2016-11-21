@@ -1,0 +1,19 @@
+.paste-url-container {
+  margin-top: 20px;
+
+  .paste-url {
+    width: 100%;
+    height: 80px;
+    padding-left: 30px;
+    border-radius: 10px;
+    border: solid 2px #d8d8d8;
+    box-sizing: border-box;
+    font-size: 16px;
+    outline: none;
+    color: #666666;
+
+    &::placeholder {
+      color: #666666;
+    }
+  }
+}

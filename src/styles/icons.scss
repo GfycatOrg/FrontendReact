@@ -1,0 +1,63 @@
+.ic {
+  position: relative;
+  display: inline-block;
+  background-repeat: no-repeat;
+
+  @mixin social_logo_bg($type) {
+    background-position: center;
+
+    &.ic-logo-#{$type}--grey {
+      @include set_svg_bg('../static/images/icons/ic_social/ic_social_#{$type}_grey');
+    }
+    &.ic-logo-#{$type}--blue {
+      @include set_svg_bg('../static/images/icons/ic_social/ic_social_#{$type}_blue');
+    }
+  }
+
+  &.ic-logo-fb {
+    width: 9px;
+    height: 20px;
+    @include social_logo_bg('fb');
+  }
+
+  &.ic-logo-tw {
+    width: 18px;
+    height: 20px;
+
+    @include social_logo_bg('tw');
+  }
+
+  &.ic-logo-inst {
+    width: 20px;
+    height: 20px;
+    @include social_logo_bg('inst');
+  }
+
+  &.ic-logo-tmb {
+    width: 10px;
+    height: 20px;
+    @include social_logo_bg('tmb');
+  }
+
+  &.ic-logo-pin {
+    width: 16px;
+    height: 20px;
+    @include social_logo_bg('pin');
+  }
+
+  &.ic-logo-vk {
+    width: 24px;
+    height: 20px;
+    @include social_logo_bg('vk');
+  }
+
+  &.ic-cloud-upload {
+    width: 26px;
+    height: 20px;
+    background-size: 26px 20px;
+
+    &.ic-cloud-upload--blue {
+      @include set_svg_bg('../static/images/icons/ic_cloud_upload/ic_cloud_upload_blue');
+    }
+  }
+}

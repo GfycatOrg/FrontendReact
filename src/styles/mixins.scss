@@ -1,0 +1,178 @@
+/// Mixin to customize scrollbars
+/// Beware, this does not work in all browsers
+/// @author Hugo Giraudel
+/// @param {Length} $size - Horizontal scrollbar's height and vertical scrollbar's width
+/// @param {Color} $foreground-color - Scrollbar's color
+/// @param {Color} $background-color [mix($foreground-color, white, 50%)] - Scrollbar's color
+/// @example scss - Scrollbar styling
+///   @include scrollbars(.5em, slategray);
+@mixin scrollbars($size, $foreground-color, $background-color: mix($foreground-color, white,  50%)) {
+  // For Google Chrome
+  ::-webkit-scrollbar {
+      width:  $size;
+      height: $size;
+  }
+
+  ::-webkit-scrollbar-thumb {
+      background: $foreground-color;
+  }
+
+  ::-webkit-scrollbar-track {
+      background: $background-color;
+  }
+
+  // For Internet Explorer
+  body {
+    scrollbar-face-color: $foreground-color;
+    scrollbar-track-color: $background-color;
+  }
+}
+
+@mixin underline($color,$height) {
+  &:after {
+    content: '';
+    display: block;
+    height: 0;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+  }
+
+  &:hover:after {
+    height: $height;
+    background: $color;
+  }
+}
+
+@mixin vdivider($color,$width,$height,$margin) {
+  background-color:$color;
+  height:$height;
+  width:$width;
+  margin-left:$margin;
+  margin-right:$margin;
+}
+
+@mixin centerWithFixedWidth($width) {
+  margin-left:auto;
+  margin-right:auto;
+  width: $width;
+}
+
+@mixin centerWithFixedMargin($margin) {
+  width:auto;
+  margin-left:$margin;
+  margin-right:$margin;
+}
+
+@mixin horizontalCenterTableDisplay() {
+  margin:0 auto;
+  display:table;
+}
+
+// media query for different screens
+@mixin huge_up {
+  @media (min-width: #{$break_huge + 1px}) {
+    @content;
+  }
+}
+
+@mixin huge_down {
+  @media (max-width: #{$break_huge}) {
+    @content;
+  }
+}
+
+@mixin large_only {
+  @media (min-width: #{$break_large + 1px}) and (max-width: #{$break_huge}) {
+    @content;
+  }
+}
+
+@mixin large_up {
+  @media (min-width: #{$break_large + 1px}) {
+    @content;
+  }
+}
+
+@mixin large_down {
+  @media (max-width: #{$break_large}) {
+    @content;
+  }
+}
+
+@mixin medium_only {
+  @media (min-width: #{$break_medium + 1px}) and (max-width: #{$break_large}) {
+    @content;
+  }
+}
+
+@mixin medium_up {
+  @media (min-width: #{$break_medium + 1px}) {
+    @content;
+  }
+}
+
+@mixin medium_down {
+  @media (max-width: #{$break_medium}) {
+    @content;
+  }
+}
+
+@mixin small_only {
+  @media (min-width: #{$break_small + 1px}) and (max-width: #{$break_medium}) {
+    @content;
+  }
+}
+
+@mixin small_up {
+  @media (min-width: #{$break_small + 1px}) {
+    @content;
+  }
+}
+
+@mixin small_down {
+  @media (max-width: #{$break_small}) {
+    @content;
+  }
+}
+
+@mixin tiny_only {
+  @media (min-width: #{$break_tiny + 1px}) and (max-width: #{$break_small}) {
+    @content;
+  }
+}
+
+@mixin tiny_up {
+  @media (min-width: #{$break_tiny + 1px}) {
+    @content;
+  }
+}
+
+@mixin tiny_down {
+  @media (max-width: #{$break_tiny}) {
+    @content;
+  }
+}
+
+@mixin xtiny_only {
+  @media (min-width: #{$break_xtiny + 1px}) and (max-width: #{$break_tiny}) {
+    @content;
+  }
+}
+
+@mixin xtiny_up {
+  @media (min-width: #{$break_xtiny + 1px}) {
+    @content;
+  }
+}
+
+@mixin xtiny_down {
+  @media (max-width: #{$break_xtiny}) {
+    @content;
+  }
+}
+
+@mixin set_svg_bg($url) {
+  background-image: url($url + '.svg');
+}

@@ -1,0 +1,69 @@
+@mixin set_svg_bg($url) {
+  background-image: url($url + '.svg');
+}
+
+.gfy-page-footer {
+  width: 100%;
+  max-width: 1162px;
+  margin: 30px auto 0;
+  .container {
+    padding: 25px 15px 50px;
+    text-align: center;
+    color: #666666;
+    border-top: 2px solid #ebebeb;
+
+    a {
+      color: #666666;
+      text-decoration: none;
+    }
+    a:hover, a:active {
+      color: #0066ff !important;
+    }
+    .page-links {
+      .page-link {
+        display: inline-block;
+        font-size: 14px;
+        line-height: 1.4;
+        padding: 0 8px 10px;
+        &:first-of-type {
+          padding-left: 0;
+        }
+        &:last-of-type {
+          padding-right: 0;
+        }
+      }
+    }
+
+    @mixin social_link_hover($type) {
+      &.social-link--#{$type} {
+        .ic-logo-#{$type} {
+          @include set_svg_bg('../../static/images/icons/ic_social/ic_social_#{$type}_grey');
+          &:hover {
+            @include set_svg_bg('../../static/images/icons/ic_social/ic_social_#{$type}_blue');
+          }
+        }
+      }
+    }
+
+    .social-links {
+      .social-link {
+        margin: 0 8px;
+
+        @include social_link_hover('fb');
+        @include social_link_hover('tw');
+        @include social_link_hover('inst');
+        @include social_link_hover('tmb');
+        @include social_link_hover('pin');
+        @include social_link_hover('vk');
+      }
+    }
+
+    .page-links, .social-links {
+      margin-bottom: 10px;
+    }
+  }
+  .copyright {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+}
