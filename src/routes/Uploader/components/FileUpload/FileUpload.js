@@ -1,8 +1,10 @@
 import React from 'react';
 import './FileUpload.scss';
 
-const FileUpload = () => (
-  <div className="file-upload-container">
+const FileUpload = ({
+  active
+}) => (
+  <div className={"file-upload-container" + (active ? " active" : "")}>
     <div className="file-upload">
       <i className="ic ic-cloud-upload ic-cloud-upload--blue"></i>
       <p className="choose-files-text">Choose files to upload</p>

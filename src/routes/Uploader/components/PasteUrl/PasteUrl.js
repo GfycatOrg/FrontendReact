@@ -1,9 +1,11 @@
 import React from 'react'
 import './PasteUrl.scss'
+import Spinner from 'components/Spinner'
 
 const PasteUrl = ({
   onPaste,
-  onKeyPress
+  onKeyPress,
+  pending
 }) => {
   let urlInput;
   return (
@@ -17,6 +19,7 @@ const PasteUrl = ({
         onPaste={(event) => onPaste(event)}
         onKeyPress={(event) => onKeyPress(event, urlInput.value)}
         placeholder="Paste URL (YouTube, Facebook, Twitch, Instagram, ...etc)" />
+      <Spinner customClass="blue" visible={pending} size="24"/>
     </div>
   );
 }

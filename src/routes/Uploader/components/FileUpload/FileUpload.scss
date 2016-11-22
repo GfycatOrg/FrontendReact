@@ -28,6 +28,13 @@
       cursor: pointer;
     }
   }
+
+  &.active {
+    .file-upload {
+      border-color: #2475ff;
+    }
+  }
+
   .ic-cloud-upload {
     width: 66px;
     height: 48px;

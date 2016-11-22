@@ -14,10 +14,10 @@ export default (store) => ({
           /*  Webpack - use require callback to define
               dependencies for bundling   */
           const SimpleUpload = require('./components/SimpleUpload/SimpleUpload').default
-          //const reducer = require('./modules/counter').default
+          const reducer = require('./modules/simpleupload.reducer').default
 
           /*  Add the reducer to the store on key 'counter'  */
-          //injectReducer(store, { key: 'counter', reducer })
+          injectReducer(store, { key: 'simpleupload', reducer })
 
           /*  Return getComponent   */
           cb(null, SimpleUpload)
