@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import FileDragAndDrop from './FileDragAndDrop'
-import { dropAreaActive, filesDrop } from 'actions/draganddrop'
+import { dropAreaActive, newFilesChosen } from 'actions/fileUpload'
 
 // propTypes: {
 //   onDragStart: React.PropTypes.func,
@@ -45,10 +45,8 @@ const mapDispatchToProps = (
       console.log('handleDrop');
       event.stopPropagation();
 
-      console.log(event.dataTransfer.files);
-
       if (event.dataTransfer.files.length > 0) {
-        dispatch(filesDrop(event.dataTransfer.files));
+        dispatch(newFilesChosen(event.dataTransfer.files));
       }
       dispatch(dropAreaActive(false));
     },
