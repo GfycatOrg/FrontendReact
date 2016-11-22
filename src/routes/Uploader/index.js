@@ -1,7 +1,7 @@
 import { injectReducer } from '../../store/reducers';
 import Uploader from './components/Uploader';
 
-export default (store) => ({
+export default store => ({
   component: Uploader,
   childRoutes: [
     {

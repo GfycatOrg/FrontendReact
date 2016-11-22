@@ -3,14 +3,12 @@ import PasteUrl from './PasteUrl';
 import { newUrlPasted, stateUrlPending } from 'actions/urlInput';
 
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   pending: state.simpleupload.pending
 });
 
 
-const mapDispatchToProps = (
-  dispatch
-) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     onPaste: (event) => {
       const url = event.clipboardData.getData('Text');

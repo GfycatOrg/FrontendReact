@@ -16,11 +16,11 @@ const FileUpload = ({
           className="file-input" type="file" name="file"
           accept="video/*,video/mp4,video/x-m4v,video/*,image/gif"
           ref={
-            input => {
+            (input) => {
               files = input;
             }
           }
-          onChange={(event) => onChange(event)}
+          onChange={event => onChange(event)}
           multiple
         />
       </div>

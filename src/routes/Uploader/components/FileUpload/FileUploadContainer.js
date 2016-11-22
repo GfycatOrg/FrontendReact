@@ -3,14 +3,12 @@ import FileUpload from './FileUpload';
 import { newFilesChosen } from 'actions/fileUpload';
 
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   active: state.simpleupload.dropAreaActive
 });
 
 
-const mapDispatchToProps = (
-  dispatch
-) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     onChange: (event) => {
       if (event.target.files.length) {

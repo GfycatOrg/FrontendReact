@@ -12,13 +12,13 @@ const FileDragAndDrop = ({
 }) => (
   <div
     className="file-drag-and-drop"
-    onDragStart={(event) => onDragStart(event)}
-    onDrag={(event) => onDrag(event)}
-    onDragEnter={(event) => onDragEnter(event)}
-    onDragLeave={(event) => onDragLeave(event)}
-    onDragOver={(event) => onDragOver(event)}
-    onDrop={(event) => onDrop(event)}
-    onDragEnd={(event) => onDragEnd(event)}
+    onDragStart={event => onDragStart(event)}
+    onDrag={event => onDrag(event)}
+    onDragEnter={event => onDragEnter(event)}
+    onDragLeave={event => onDragLeave(event)}
+    onDragOver={event => onDragOver(event)}
+    onDrop={event => onDrop(event)}
+    onDragEnd={event => onDragEnd(event)}
     >
     {children}
   </div>

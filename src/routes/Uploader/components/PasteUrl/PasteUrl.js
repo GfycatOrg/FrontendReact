@@ -16,8 +16,8 @@ const PasteUrl = ({
         ref={(input) => {
           urlInput = input;
         }}
-        onPaste={(event) => onPaste(event)}
-        onKeyPress={(event) => onKeyPress(event, urlInput.value)}
+        onPaste={event => onPaste(event)}
+        onKeyPress={event => onKeyPress(event, urlInput.value)}
         placeholder="Paste URL (YouTube, Facebook, Twitch, Instagram, ...etc)" />
       <Spinner customClass="blue" visible={pending} size="24"/>
     </div>

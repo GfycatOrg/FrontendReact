@@ -17,7 +17,7 @@ const mapDispatchToProps = {
   doubleAsync
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   counter: state.counter
 });
 

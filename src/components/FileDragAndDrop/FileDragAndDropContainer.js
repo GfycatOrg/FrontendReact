@@ -11,12 +11,10 @@ import { dropAreaActive, newFilesChosen } from 'actions/fileUpload';
 //   onDragEnd: React.PropTypes.func
 // }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
 });
 
-const mapDispatchToProps = (
-  dispatch
-) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     onDragStart: (event) => {
       console.log('handleDragStart');
