@@ -17,7 +17,7 @@ const FileUpload = ({
           accept="video/*,video/mp4,video/x-m4v,video/*,image/gif"
           ref={
             input => {
-              files = input
+              files = input;
             }
           }
           onChange={(event) => onChange(event)}
@@ -26,6 +26,6 @@ const FileUpload = ({
       </div>
     </div>
   );
-}
+};
 
 export default FileUpload;

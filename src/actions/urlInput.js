@@ -15,6 +15,6 @@ export const stateUrlPending = (pending) => {
 const actions = {
   newUrlPasted,
   stateUrlPending
-}
+};
 
-export default actions
+export default actions;

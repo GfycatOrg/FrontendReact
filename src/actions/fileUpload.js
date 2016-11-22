@@ -9,8 +9,8 @@ export const dropAreaActive = (active) => {
   return  {
     type: 'DROP_AREA_ACTIVE',
     dropAreaActive: active
-  }
-}
+  };
+};
 
 export const newFilesChosen = (files) => {
   return {
@@ -22,6 +22,6 @@ export const newFilesChosen = (files) => {
 const actions = {
   dropAreaActive,
   newFilesChosen
-}
+};
 
-export default actions
+export default actions;

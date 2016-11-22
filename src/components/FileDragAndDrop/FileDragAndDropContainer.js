@@ -1,6 +1,6 @@
-import { connect } from 'react-redux'
-import FileDragAndDrop from './FileDragAndDrop'
-import { dropAreaActive, newFilesChosen } from 'actions/fileUpload'
+import { connect } from 'react-redux';
+import FileDragAndDrop from './FileDragAndDrop';
+import { dropAreaActive, newFilesChosen } from 'actions/fileUpload';
 
 // propTypes: {
 //   onDragStart: React.PropTypes.func,
@@ -57,4 +57,4 @@ const mapDispatchToProps = (
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(FileDragAndDrop)
+export default connect(mapStateToProps, mapDispatchToProps)(FileDragAndDrop);

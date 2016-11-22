@@ -1,6 +1,6 @@
-import React from 'react'
-import { IndexLink, Link } from 'react-router'
-import './Navbar.scss'
+import React from 'react';
+import { IndexLink, Link } from 'react-router';
+import './Navbar.scss';
 
 export const Navbar = () => (
   <div id='navbar'>
@@ -17,6 +17,6 @@ export const Navbar = () => (
       </div>
     </nav>
   </div>
-)
+);
 
-export default Navbar
+export default Navbar;

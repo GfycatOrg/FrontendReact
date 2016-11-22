@@ -1,11 +1,11 @@
-import { connect } from 'react-redux'
-import PasteUrl from './PasteUrl'
-import { newUrlPasted, stateUrlPending } from 'actions/urlInput'
+import { connect } from 'react-redux';
+import PasteUrl from './PasteUrl';
+import { newUrlPasted, stateUrlPending } from 'actions/urlInput';
 
 
 const mapStateToProps = (state) => ({
   pending: state.simpleupload.pending
-})
+});
 
 
 const mapDispatchToProps = (
@@ -16,7 +16,7 @@ const mapDispatchToProps = (
       const url = event.clipboardData.getData('Text');
       if (url && url.length > 1) {
         dispatch(newUrlPasted(url));
-        dispatch(stateUrlPending(true))
+        dispatch(stateUrlPending(true));
       }
     },
     onKeyPress: (event, url) => {
@@ -25,7 +25,7 @@ const mapDispatchToProps = (
         dispatch(stateUrlPending(true));
       }
     }
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(PasteUrl)
+export default connect(mapStateToProps, mapDispatchToProps)(PasteUrl);

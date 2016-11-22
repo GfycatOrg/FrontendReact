@@ -1,5 +1,5 @@
-import { injectReducer } from '../../store/reducers'
-import Uploader from './components/Uploader'
+import { injectReducer } from '../../store/reducers';
+import Uploader from './components/Uploader';
 
 export default (store) => ({
   component: Uploader,
@@ -13,27 +13,27 @@ export default (store) => ({
         require.ensure([], (require) => {
           /*  Webpack - use require callback to define
               dependencies for bundling   */
-          const SimpleUpload = require('./components/SimpleUpload/SimpleUpload').default
-          const reducer = require('./modules/simpleupload.reducer').default
+          const SimpleUpload = require('./components/SimpleUpload/SimpleUpload').default;
+          const reducer = require('./modules/simpleupload.reducer').default;
 
           /*  Add the reducer to the store on key 'counter'  */
-          injectReducer(store, { key: 'simpleupload', reducer })
+          injectReducer(store, { key: 'simpleupload', reducer });
 
           /*  Return getComponent   */
-          cb(null, SimpleUpload)
+          cb(null, SimpleUpload);
 
           /* Webpack named bundle   */
-        }, 'upload')
+        }, 'upload');
       }
     },
     {
       path: 'editor',
       getComponent (nextState, cb) {
         require.ensure([], (require) => {
-          const Editor = require('./components/Editor/Editor').default
-          cb(null, Editor)
-        }, 'editor')
+          const Editor = require('./components/Editor/Editor').default;
+          cb(null, Editor);
+        }, 'editor');
       }
     }
   ]
-})
+});

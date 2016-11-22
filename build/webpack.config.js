@@ -1,17 +1,17 @@
-const argv = require('yargs').argv
-const webpack = require('webpack')
-const cssnano = require('cssnano')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const config = require('../config')
-const debug = require('debug')('app:webpack:config')
+const argv = require('yargs').argv;
+const webpack = require('webpack');
+const cssnano = require('cssnano');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const config = require('../config');
+const debug = require('debug')('app:webpack:config');
 
-const paths = config.utils_paths
-const __DEV__ = config.globals.__DEV__
-const __PROD__ = config.globals.__PROD__
-const __TEST__ = config.globals.__TEST__
+const paths = config.utils_paths;
+const __DEV__ = config.globals.__DEV__;
+const __PROD__ = config.globals.__PROD__;
+const __TEST__ = config.globals.__TEST__;
 
-debug('Creating configuration.')
+debug('Creating configuration.');
 const webpackConfig = {
   name    : 'client',
   target  : 'web',
@@ -21,18 +21,18 @@ const webpackConfig = {
     extensions : ['', '.js', '.jsx', '.json']
   },
   module : {}
-}
+};
 // ------------------------------------
 // Entry Points
 // ------------------------------------
-const APP_ENTRY = paths.client('main.js')
+const APP_ENTRY = paths.client('main.js');
 
 webpackConfig.entry = {
   app : __DEV__
     ? [APP_ENTRY].concat(`webpack-hot-middleware/client?path=${config.compiler_public_path}__webpack_hmr`)
     : [APP_ENTRY],
   vendor : config.compiler_vendors
-}
+};
 
 // ------------------------------------
 // Bundle Output
@@ -41,15 +41,15 @@ webpackConfig.output = {
   filename   : `[name].[${config.compiler_hash_type}].js`,
   path       : paths.dist(),
   publicPath : config.compiler_public_path
-}
+};
 
 // ------------------------------------
 // Externals
 // ------------------------------------
-webpackConfig.externals = {}
-webpackConfig.externals['react/lib/ExecutionEnvironment'] = true
-webpackConfig.externals['react/lib/ReactContext'] = true
-webpackConfig.externals['react/addons'] = true
+webpackConfig.externals = {};
+webpackConfig.externals['react/lib/ExecutionEnvironment'] = true;
+webpackConfig.externals['react/lib/ReactContext'] = true;
+webpackConfig.externals['react/addons'] = true;
 
 // ------------------------------------
 // Plugins
@@ -66,36 +66,36 @@ webpackConfig.plugins = [
       collapseWhitespace : true
     }
   })
-]
+];
 
 // Ensure that the compiler exits on errors during testing so that
 // they do not get skipped and misreported.
 if (__TEST__ && !argv.watch) {
   webpackConfig.plugins.push(function () {
     this.plugin('done', function (stats) {
-      const errors = []
+      const errors = [];
       if (stats.compilation.errors.length) {
         // Log each of the warnings
         stats.compilation.errors.forEach(function (error) {
-          errors.push(error.message || error)
-        })
+          errors.push(error.message || error);
+        });
 
         // Pretend no assets were generated. This prevents the tests
         // from running making it clear that there were warnings.
-        throw new Error(errors)
+        throw new Error(errors);
       }
-    })
-  })
+    });
+  });
 }
 
 if (__DEV__) {
-  debug('Enable plugins for live development (HMR, NoErrors).')
+  debug('Enable plugins for live development (HMR, NoErrors).');
   webpackConfig.plugins.push(
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()
-  )
+  );
 } else if (__PROD__) {
-  debug('Enable plugins for production (OccurenceOrder, Dedupe & UglifyJS).')
+  debug('Enable plugins for production (OccurenceOrder, Dedupe & UglifyJS).');
   webpackConfig.plugins.push(
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.DedupePlugin(),
@@ -106,7 +106,7 @@ if (__DEV__) {
         warnings  : false
       }
     })
-  )
+  );
 }
 
 // Don't split bundles during testing, since we only want import one bundle
@@ -115,7 +115,7 @@ if (!__TEST__) {
     new webpack.optimize.CommonsChunkPlugin({
       names : ['vendor']
     })
-  )
+  );
 }
 
 // ------------------------------------
@@ -130,14 +130,14 @@ webpackConfig.module.loaders = [{
 }, {
   test   : /\.json$/,
   loader : 'json'
-}]
+}];
 
 // ------------------------------------
 // Style Loaders
 // ------------------------------------
 // We use cssnano with the postcss loader, so we tell
 // css-loader not to duplicate minimization.
-const BASE_CSS_LOADER = 'css?sourceMap&-minimize'
+const BASE_CSS_LOADER = 'css?sourceMap&-minimize';
 
 webpackConfig.module.loaders.push({
   test    : /\.scss$/,
@@ -148,7 +148,7 @@ webpackConfig.module.loaders.push({
     'postcss',
     'sass?sourceMap'
   ]
-})
+});
 webpackConfig.module.loaders.push({
   test    : /\.css$/,
   exclude : null,
@@ -157,11 +157,11 @@ webpackConfig.module.loaders.push({
     BASE_CSS_LOADER,
     'postcss'
   ]
-})
+});
 
 webpackConfig.sassLoader = {
   includePaths : paths.client('styles')
-}
+};
 
 webpackConfig.postcss = [
   cssnano({
@@ -179,7 +179,7 @@ webpackConfig.postcss = [
     safe          : true,
     sourcemap     : true
   })
-]
+];
 
 // File loaders
 /* eslint-disable */
@@ -201,21 +201,21 @@ webpackConfig.module.loaders.push(
 // need to use the extractTextPlugin to fix this issue:
 // http://stackoverflow.com/questions/34133808/webpack-ots-parsing-error-loading-fonts/34133809#34133809
 if (!__DEV__) {
-  debug('Apply ExtractTextPlugin to CSS loaders.')
+  debug('Apply ExtractTextPlugin to CSS loaders.');
   webpackConfig.module.loaders.filter((loader) =>
     loader.loaders && loader.loaders.find((name) => /css/.test(name.split('?')[0]))
   ).forEach((loader) => {
-    const first = loader.loaders[0]
-    const rest = loader.loaders.slice(1)
-    loader.loader = ExtractTextPlugin.extract(first, rest.join('!'))
-    delete loader.loaders
-  })
+    const first = loader.loaders[0];
+    const rest = loader.loaders.slice(1);
+    loader.loader = ExtractTextPlugin.extract(first, rest.join('!'));
+    delete loader.loaders;
+  });
 
   webpackConfig.plugins.push(
     new ExtractTextPlugin('[name].[contenthash].css', {
       allChunks : true
     })
-  )
+  );
 }
 
-module.exports = webpackConfig
+module.exports = webpackConfig;

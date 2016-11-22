@@ -1,6 +1,6 @@
-import { connect } from 'react-redux'
-import FileUpload from './FileUpload'
-import { newFilesChosen } from 'actions/fileUpload'
+import { connect } from 'react-redux';
+import FileUpload from './FileUpload';
+import { newFilesChosen } from 'actions/fileUpload';
 
 
 const mapStateToProps = (state) => ({
@@ -20,4 +20,4 @@ const mapDispatchToProps = (
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(FileUpload)
+export default connect(mapStateToProps, mapDispatchToProps)(FileUpload);

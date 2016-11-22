@@ -1,5 +1,5 @@
-import React from 'react'
-import './Spinner.scss'
+import React from 'react';
+import './Spinner.scss';
 
 const Spinner = ({
   customClass,
@@ -15,7 +15,7 @@ const Spinner = ({
     style = {
       width: size + "px",
       height: size + "px"
-    }
+    };
   }
 
   return (
@@ -36,4 +36,4 @@ const Spinner = ({
   );
 };
 
-export default Spinner
+export default Spinner;

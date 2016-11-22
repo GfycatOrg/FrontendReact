@@ -1,6 +1,6 @@
-import React from 'react'
-import './PasteUrl.scss'
-import Spinner from 'components/Spinner'
+import React from 'react';
+import './PasteUrl.scss';
+import Spinner from 'components/Spinner';
 
 const PasteUrl = ({
   onPaste,
@@ -22,6 +22,6 @@ const PasteUrl = ({
       <Spinner customClass="blue" visible={pending} size="24"/>
     </div>
   );
-}
+};
 
-export default PasteUrl
+export default PasteUrl;

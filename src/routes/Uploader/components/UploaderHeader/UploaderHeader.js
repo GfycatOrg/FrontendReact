@@ -1,6 +1,6 @@
-import React from 'react'
-import { IndexLink, Link } from 'react-router'
-import './UploaderHeader.scss'
+import React from 'react';
+import { IndexLink, Link } from 'react-router';
+import './UploaderHeader.scss';
 
 const UploaderHeader = () => (
   <div className="uploader-tabs">

@@ -1,9 +1,9 @@
 // ------------------------------------
 // Constants
 // ------------------------------------
-export const DROP_AREA_ACTIVE = 'DROP_AREA_ACTIVE'
-export const NEW_FILES_CHOSEN = 'NEW_FILES_CHOSEN'
-export const STATE_URL_PENDING = 'STATE_URL_PENDING'
+export const DROP_AREA_ACTIVE = 'DROP_AREA_ACTIVE';
+export const NEW_FILES_CHOSEN = 'NEW_FILES_CHOSEN';
+export const STATE_URL_PENDING = 'STATE_URL_PENDING';
 
 
 const fileListToArray = (filelist) => {
@@ -11,7 +11,7 @@ const fileListToArray = (filelist) => {
     return Array.prototype.slice.call(filelist);
   }
   return [];
-}
+};
 
 
 // ------------------------------------
@@ -41,7 +41,7 @@ const ACTION_HANDLERS = {
       ]
     };
   }
-}
+};
 
 // ------------------------------------
 // Reducer
@@ -50,12 +50,12 @@ const initialState = {
   pending: false,
   dropAreaActive: false,
   files: []
-}
+};
 
 export default function SimpleUploadReducer (state = initialState, action) {
-  const handler = ACTION_HANDLERS[action.type]
+  const handler = ACTION_HANDLERS[action.type];
 
-  let result = handler ? handler(state, action) : state
+  let result = handler ? handler(state, action) : state;
   console.log('result', result);
-  return result
+  return result;
 }
