@@ -7,7 +7,7 @@ export default (store) => ({
     {
       path: 'upload',
       /*  Async getComponent is only invoked when route matches   */
-      getComponent (nextState, cb) {
+      getComponent(nextState, cb) {
         /*  Webpack - use 'require.ensure' to create a split point
             and embed an async module loader (jsonp) when bundling   */
         require.ensure([], (require) => {
@@ -28,7 +28,7 @@ export default (store) => ({
     },
     {
       path: 'editor',
-      getComponent (nextState, cb) {
+      getComponent(nextState, cb) {
         require.ensure([], (require) => {
           const Editor = require('./components/Editor/Editor').default;
           cb(null, Editor);

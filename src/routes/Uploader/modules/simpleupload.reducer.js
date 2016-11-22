@@ -52,7 +52,7 @@ const initialState = {
   files: []
 };
 
-export default function SimpleUploadReducer (state = initialState, action) {
+export default function SimpleUploadReducer(state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type];
 
   let result = handler ? handler(state, action) : state;
