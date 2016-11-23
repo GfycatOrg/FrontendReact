@@ -2,6 +2,8 @@ const express = require('express');
 const debug = require('debug')('app:server');
 const webpack = require('webpack');
 const webpackConfig = require('../build/webpack.config');
+const webpackDevMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
 const config = require('../config');
 const compress = require('compression');
 
@@ -23,7 +25,7 @@ if (config.env === 'development') {
   const compiler = webpack(webpackConfig);
 
   debug('Enable webpack dev and HMR middleware');
-  app.use(require('webpack-dev-middleware')(compiler, {
+  app.use(webpackDevMiddleware(compiler, {
     publicPath: webpackConfig.output.publicPath,
     contentBase: paths.client(),
     hot: true,
@@ -32,7 +34,7 @@ if (config.env === 'development') {
     lazy: false,
     stats: config.compiler_stats
   }));
-  app.use(require('webpack-hot-middleware')(compiler));
+  app.use(webpackHotMiddleware(compiler));
 
   // Serve static assets from ~/src/static since Webpack is unaware of
   // these files. This middleware doesn't need to be enabled outside

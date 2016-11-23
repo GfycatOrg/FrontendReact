@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import FileDragAndDrop from './FileDragAndDrop';
 import { dropAreaActive, newFilesChosen } from 'actions/fileUpload';
+import FileDragAndDrop from './FileDragAndDrop';
 
 // propTypes: {
 //   onDragStart: React.PropTypes.func,
@@ -11,48 +11,47 @@ import { dropAreaActive, newFilesChosen } from 'actions/fileUpload';
 //   onDragEnd: React.PropTypes.func
 // }
 
-const mapStateToProps = state => ({
+// const mapStateToProps = state => ({
+//
+// });
+
+const mapDispatchToProps = dispatch => ({
+  onDragStart: (event) => {
+    console.log('handleDragStart', event);
+  },
+
+  onDrag: (event) => {
+    console.log('handleDrag', event);
+  },
+
+  onDragEnter: (event) => {
+    dispatch(dropAreaActive(true));
+    console.log('handleDragEnter', event);
+  },
+
+  onDragLeave: (event) => {
+    console.log('handleDragLeave', event);
+    dispatch(dropAreaActive(false));
+  },
+
+  onDragOver: (event) => {
+      // console.log('handleDragOver');
+    event.preventDefault();
+  },
+
+  onDrop: (event) => {
+    console.log('handleDrop');
+    event.stopPropagation();
+
+    if (event.dataTransfer.files.length > 0) {
+      dispatch(newFilesChosen(event.dataTransfer.files));
+    }
+    dispatch(dropAreaActive(false));
+  },
+
+  onDragEnd: (event) => {
+    console.log('handleDragEnd', event);
+  }
 });
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onDragStart: (event) => {
-      console.log('handleDragStart');
-    },
-
-    onDrag: (event) => {
-      console.log('handleDrag');
-    },
-
-    onDragEnter: (event) => {
-      dispatch(dropAreaActive(true));
-      console.log('handleDragEnter');
-    },
-
-    onDragLeave: (event) => {
-      console.log('handleDragLeave');
-      dispatch(dropAreaActive(false));
-    },
-
-    onDragOver: (event) => {
-      //console.log('handleDragOver');
-      event.preventDefault();
-    },
-
-    onDrop: (event) => {
-      console.log('handleDrop');
-      event.stopPropagation();
-
-      if (event.dataTransfer.files.length > 0) {
-        dispatch(newFilesChosen(event.dataTransfer.files));
-      }
-      dispatch(dropAreaActive(false));
-    },
-
-    onDragEnd: (event) => {
-      //console.log('handleDragEnd');
-    }
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(FileDragAndDrop);
+export default connect(mapDispatchToProps)(FileDragAndDrop);

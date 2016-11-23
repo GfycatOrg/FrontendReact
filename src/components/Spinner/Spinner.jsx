@@ -6,20 +6,19 @@ const Spinner = ({
   visible,
   size
 }) => {
-  let spinnerClass = 'spinner';
-  if (visible) spinnerClass += ' visible';
-  if (customClass) spinnerClass += (' ' + customClass);
-
   let style = {};
   if (size) {
     style = {
-      width: size + 'px',
-      height: size + 'px'
+      width: `${size}px`,
+      height: `${size}px`
     };
   }
 
   return (
-    <div className={spinnerClass} style={style}>
+    <div
+      className={`spinner${visible ? ' visible' : ''}${customClass ? ` ${customClass}` : ''}`}
+      style={style}
+    >
       <div className="spinner-blade"></div>
       <div className="spinner-blade"></div>
       <div className="spinner-blade"></div>
@@ -34,6 +33,12 @@ const Spinner = ({
       <div className="spinner-blade"></div>
     </div>
   );
+};
+
+Spinner.propTypes = {
+  customClass: React.PropTypes.string,
+  size: React.PropTypes.number,
+  visible: React.PropTypes.bool
 };
 
 export default Spinner;

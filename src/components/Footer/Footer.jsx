@@ -1,30 +1,34 @@
-// import React from 'react'
-// import { IndexLink, Link } from 'react-router'
-
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 import './Footer.scss';
 
 const PageLink = ({
   text,
   url
-}) => {
-  return (
-    <span className="page-link">
-      <a alt={text} href={url}>{text}</a>
-    </span>
-  );
+}) => (
+  <span className="page-link">
+    <a alt={text} href={url}>{text}</a>
+  </span>
+);
+
+PageLink.propTypes = {
+  text: React.PropTypes.string.isRequired,
+  url: React.PropTypes.string.isRequired
 };
 
 const SocialLink = ({
   name,
   url
 }) => (
-  <a className={'social-link social-link--' + name} href={url} target="_blank">
-    <i className={'ic ic-logo-' + name}></i>
+  <a className={`social-link social-link--${name}`} href={url} target="_blank" rel="noopener noreferrer">
+    <i className={`ic ic-logo-${name}`}></i>
   </a>
 );
+
+SocialLink.propTypes = {
+  name: React.PropTypes.string.isRequired,
+  url: React.PropTypes.string.isRequired
+};
 
 const Copyright = ({
   visible
@@ -35,6 +39,10 @@ const Copyright = ({
     );
   }
   return null;
+};
+
+Copyright.propTypes = {
+  visible: React.PropTypes.bool
 };
 
 class Footer extends React.Component {
@@ -138,11 +146,15 @@ class Footer extends React.Component {
               )
             }
           </div>
-          <Copyright visible={this.props.isPageStatic}/>
+          <Copyright visible={this.props.isPageStatic} />
         </div>
       </div>
     );
   }
 }
+
+Footer.propTypes = {
+  isPageStatic: React.PropTypes.bool
+};
 
 export default Footer;

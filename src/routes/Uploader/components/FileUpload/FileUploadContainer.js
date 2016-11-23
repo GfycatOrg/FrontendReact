@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import FileUpload from './FileUpload';
 import { newFilesChosen } from 'actions/fileUpload';
+import FileUpload from './FileUpload';
 
 
 const mapStateToProps = state => ({
@@ -8,14 +8,12 @@ const mapStateToProps = state => ({
 });
 
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onChange: (event) => {
-      if (event.target.files.length) {
-        dispatch(newFilesChosen(event.target.files));
-      }
+const mapDispatchToProps = dispatch => ({
+  onChange: (event) => {
+    if (event.target.files.length) {
+      dispatch(newFilesChosen(event.target.files));
     }
-  };
-};
+  }
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(FileUpload);

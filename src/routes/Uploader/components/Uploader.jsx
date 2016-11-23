@@ -8,4 +8,8 @@ const Uploader = ({ children }) => (
   </div>
 );
 
+Uploader.propTypes = {
+  children: React.PropTypes.element
+};
+
 export default Uploader;

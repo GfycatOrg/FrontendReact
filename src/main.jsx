@@ -1,3 +1,5 @@
+/* eslint-disable global-require */
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import createStore from './store/createStore';
@@ -6,6 +8,7 @@ import AppContainer from './containers/AppContainer';
 // ========================================================
 // Store Instantiation
 // ========================================================
+/* eslint-disable no-underscore-dangle */
 const initialState = window.___INITIAL_STATE__;
 const store = createStore(initialState);
 

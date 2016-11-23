@@ -18,29 +18,23 @@ const fileListToArray = (filelist) => {
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
-  [DROP_AREA_ACTIVE]: (state, action) => {
-    return {
-      ...state,
-      dropAreaActive: action.dropAreaActive
-    };
-  },
+  [DROP_AREA_ACTIVE]: (state, action) => ({
+    ...state,
+    dropAreaActive: action.dropAreaActive
+  }),
 
-  [STATE_URL_PENDING]: (state, action) => {
-    return {
-      ...state,
-      pending: action.pending
-    };
-  },
+  [STATE_URL_PENDING]: (state, action) => ({
+    ...state,
+    pending: action.pending
+  }),
 
-  [NEW_FILES_CHOSEN]: (state, action) => {
-    return {
-      ...state,
-      files: [
-        ...state.files,
-        ...fileListToArray(action.files)
-      ]
-    };
-  }
+  [NEW_FILES_CHOSEN]: (state, action) => ({
+    ...state,
+    files: [
+      ...state.files,
+      ...fileListToArray(action.files)
+    ]
+  })
 };
 
 // ------------------------------------
@@ -55,7 +49,7 @@ const initialState = {
 export default function SimpleUploadReducer(state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type];
 
-  let result = handler ? handler(state, action) : state;
+  const result = handler ? handler(state, action) : state;
   console.log('result', result);
   return result;
 }

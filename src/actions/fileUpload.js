@@ -5,19 +5,15 @@
 //   };
 // };
 
-export const dropAreaActive = (active) => {
-  return  {
-    type: 'DROP_AREA_ACTIVE',
-    dropAreaActive: active
-  };
-};
+export const dropAreaActive = active => ({
+  type: 'DROP_AREA_ACTIVE',
+  dropAreaActive: active
+});
 
-export const newFilesChosen = (files) => {
-  return {
-    type: 'NEW_FILES_CHOSEN',
-    files
-  };
-};
+export const newFilesChosen = files => ({
+  type: 'NEW_FILES_CHOSEN',
+  files
+});
 
 const actions = {
   dropAreaActive,
