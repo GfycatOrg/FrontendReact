@@ -21,8 +21,8 @@ const SocialLink = ({
   name,
   url
 }) => (
-  <a className={"social-link social-link--" + name} href={url} target="_blank">
-    <i className={"ic ic-logo-" + name}></i>
+  <a className={'social-link social-link--' + name} href={url} target="_blank">
+    <i className={'ic ic-logo-' + name}></i>
   </a>
 );
 
@@ -42,74 +42,74 @@ class Footer extends React.Component {
     super();
     this.pages = [
       {
-        text: "About",
-        url: "https://gfycat.com/about"
+        text: 'About',
+        url: 'https://gfycat.com/about'
       },
       {
-        text: "Team",
-        url: "https://gfycat.com/team"
+        text: 'Team',
+        url: 'https://gfycat.com/team'
       },
       {
-        text: "Blog",
-        url: "https://medium.com/@Gfycat"
+        text: 'Blog',
+        url: 'https://medium.com/@Gfycat'
       },
       {
-        text: "Jobs",
-        url: "https://gfycat.com/jobs"
+        text: 'Jobs',
+        url: 'https://gfycat.com/jobs'
       },
       {
-        text: "Partners",
-        url: "https://gfycat.com/partners"
+        text: 'Partners',
+        url: 'https://gfycat.com/partners'
       },
       {
-        text: "FAQ",
-        url: "https://gfycat.com/faq"
+        text: 'FAQ',
+        url: 'https://gfycat.com/faq'
       },
       {
-        text: "Support",
-        url: "https://gfycat.com/support"
+        text: 'Support',
+        url: 'https://gfycat.com/support'
       },
       {
-        text: "Developer API",
-        url: "https://developers.gfycat.com/api"
+        text: 'Developer API',
+        url: 'https://developers.gfycat.com/api'
       },
       {
-        text: "Terms and Conditions",
-        url: "https://gfycat.com/terms"
+        text: 'Terms and Conditions',
+        url: 'https://gfycat.com/terms'
       },
       {
-        text: "Privacy",
-        url: "https://gfycat.com/privacy"
+        text: 'Privacy',
+        url: 'https://gfycat.com/privacy'
       },
       {
-        text: "DMCA",
-        url: "https://gfycat.com/dmca"
+        text: 'DMCA',
+        url: 'https://gfycat.com/dmca'
       }
     ];
     this.socialLinks = [
       {
-        name: "fb",
-        url: "https://www.facebook.com/thegfycat/"
+        name: 'fb',
+        url: 'https://www.facebook.com/thegfycat/'
       },
       {
-        name: "tw",
-        url: "https://twitter.com/Gfycat"
+        name: 'tw',
+        url: 'https://twitter.com/Gfycat'
       },
       {
-        name: "inst",
-        url: "https://www.instagram.com/gfycat/"
+        name: 'inst',
+        url: 'https://www.instagram.com/gfycat/'
       },
       {
-        name: "tmb",
-        url: "http://gfycat.tumblr.com"
+        name: 'tmb',
+        url: 'http://gfycat.tumblr.com'
       },
       {
-        name: "pin",
-        url: "https://www.pinterest.com/gfycat"
+        name: 'pin',
+        url: 'https://www.pinterest.com/gfycat'
       },
       {
-        name: "vk",
-        url: "https://www.pinterest.com/gfycat"
+        name: 'vk',
+        url: 'https://www.pinterest.com/gfycat'
       }
     ];
   }

@@ -6,15 +6,15 @@ const Spinner = ({
   visible,
   size
 }) => {
-  let spinnerClass = "spinner";
-  if (visible) spinnerClass += " visible";
-  if (customClass) spinnerClass += (" " + customClass);
+  let spinnerClass = 'spinner';
+  if (visible) spinnerClass += ' visible';
+  if (customClass) spinnerClass += (' ' + customClass);
 
   let style = {};
   if (size) {
     style = {
-      width: size + "px",
-      height: size + "px"
+      width: size + 'px',
+      height: size + 'px'
     };
   }
 

@@ -18,7 +18,7 @@ const mapDispatchToProps = (dispatch) => {
       }
     },
     onKeyPress: (event, url) => {
-      if (event.key === "Enter" && url) {
+      if (event.key === 'Enter' && url) {
         dispatch(newUrlPasted(url));
         dispatch(stateUrlPending(true));
       }

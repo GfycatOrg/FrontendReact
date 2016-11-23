@@ -7,7 +7,7 @@ const FileUpload = ({
 }) => {
   let files;
   return (
-    <div className={"file-upload-container" + (active ? " active" : "")}>
+    <div className={'file-upload-container' + (active ? ' active' : '')}>
       <div className="file-upload">
         <i className="ic ic-cloud-upload ic-cloud-upload--blue"></i>
         <p className="choose-files-text">Choose files to upload</p>
