@@ -11,7 +11,7 @@ const FileDragAndDrop = ({
   children
 }) => (
   <div
-    className="file-drag-and-drop"
+    className='file-drag-and-drop'
     onDragStart={event => onDragStart(event)}
     onDrag={event => onDrag(event)}
     onDragEnter={event => onDragEnter(event)}
