@@ -60,4 +60,54 @@
       @include set_svg_bg('../static/images/icons/ic_cloud_upload/ic_cloud_upload_blue');
     }
   }
+
+  &.ic-gfycat-logo-big {
+    width: 99px;
+    height: 27px;
+    background-size: 99px 27px;
+
+    &.ic-gfycat-logo-big--blue {
+      @include set_svg_bg('../static/images/icons/ic_gfycat_logo_big/ic_gfycat_logo_big_blue');
+    }
+  }
+
+  &.ic-gfycat-logo-small {
+    width: 27px;
+    height: 27px;
+    background-size: 27px;
+
+    &.ic-gfycat-logo-small--blue {
+      @include set_svg_bg('../static/images/icons/ic_gfycat_logo_small/ic_gfycat_logo_small_blue');
+    }
+  }
+
+  &.ic-ellipsis {
+    width: 16px;
+    height: 16px;
+    background-size: 16px;
+
+    &.ic-ellipsis--blue {
+      @include set_svg_bg('../static/images/icons/ic_ellipsis/ic_ellipsis_blue');
+    }
+  }
+
+  &.ic-search {
+    width: 20px;
+    height: 20px;
+    background-size: 20px;
+
+    &.ic-search--white {
+      @include set_svg_bg('../static/images/icons/ic_search/ic_search_white');
+    }
+  }
+
+  &.ic-guest-user {
+    width: 24px;
+    height: 24px;
+    background-size: 24px;
+    
+    &.ic-guest-user--blue {
+      @include set_svg_bg('../static/images/icons/ic_guest_user/ic_guest_user_blue');
+    }
+  }
 }
