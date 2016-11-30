@@ -11,6 +11,11 @@ const MenuItem = ({
   </li>
 );
 
+MenuItem.propTypes = {
+  text: React.PropTypes.string,
+  url: React.PropTypes.string
+};
+
 const Dropdown = ({
   menuItems
 }) => (
@@ -25,6 +30,10 @@ const Dropdown = ({
     </ul>
   </div>
 );
+
+Dropdown.propTypes = {
+  menuItems: React.PropTypes.array
+};
 
 const SearchBar = () => (
   <form className="search-bar" action="https://gfycat.com/search/" method="get" target="_top" noValidate="">
@@ -122,10 +131,10 @@ class Header extends React.Component {
               <button className="upload-button">Upload</button>
             </Link>
             <div className="vertical-divider"></div>
-            <a href={"https://gfycat.com/login?redirect_uri=" + document.location.href}>
+            <a href={'https://gfycat.com/login?redirect_uri=' + document.location.href}>
               <button className="login-button">Log In</button>
             </a>
-            <a href={"https://gfycat.com/signup?redirect_uri=" + document.location.href}>
+            <a href={'https://gfycat.com/signup?redirect_uri=' + document.location.href}>
               <button className="signup-button">Sign Up</button>
             </a>
           </span>
@@ -135,7 +144,7 @@ class Header extends React.Component {
                 <i className="ic ic-cloud-upload ic-cloud-upload--blue"></i>
               </button>
             </Link>
-            <a href={"https://gfycat.com/login?redirect_uri=" + document.location.href}>
+            <a href={'https://gfycat.com/login?redirect_uri=' + document.location.href}>
               <button className="login-button">
                 <i className="ic ic-guest-user ic-guest-user--blue"></i>
               </button>
