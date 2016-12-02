@@ -2,7 +2,7 @@
   background-image: url($url + '.svg');
 }
 
-.gfy-page-footer {
+.gfyPageFooter {
   width: 100%;
   max-width: 1162px;
   margin: 30px auto 0;
@@ -19,8 +19,8 @@
     a:hover, a:active {
       color: #0066ff !important;
     }
-    .page-links {
-      .page-link {
+    .pageLinks {
+      .pageLink {
         display: inline-block;
         font-size: 14px;
         line-height: 1.4;
@@ -35,8 +35,8 @@
     }
 
     @mixin social_link_hover($type) {
-      &.social-link--#{$type} {
-        .ic-logo-#{$type} {
+      &.#{$type} {
+        .icLogo.#{$type} {
           @include set_svg_bg('../../static/images/icons/ic_social/ic_social_#{$type}_grey');
           &:hover {
             @include set_svg_bg('../../static/images/icons/ic_social/ic_social_#{$type}_blue');
@@ -45,8 +45,8 @@
       }
     }
 
-    .social-links {
-      .social-link {
+    .socialLinks {
+      .socialLink {
         margin: 0 8px;
 
         @include social_link_hover('fb');
@@ -58,7 +58,7 @@
       }
     }
 
-    .page-links, .social-links {
+    .pageLinks, .socialLinks {
       margin-bottom: 10px;
     }
   }

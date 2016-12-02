@@ -1,3 +1,7 @@
+@mixin set_svg_bg($url) {
+  background-image: url($url + '.svg');
+}
+
 .ic {
   position: relative;
   display: inline-block;
@@ -6,46 +10,46 @@
   @mixin social_logo_bg($type) {
     background-position: center;
 
-    &.ic-logo-#{$type}--grey {
+    &.icLogo.#{$type}.grey {
       @include set_svg_bg('../static/images/icons/ic_social/ic_social_#{$type}_grey');
     }
-    &.ic-logo-#{$type}--blue {
+    &.icLogo.#{$type}.blue {
       @include set_svg_bg('../static/images/icons/ic_social/ic_social_#{$type}_blue');
     }
   }
 
-  &.ic-logo-fb {
+  &.icLogo.fb {
     width: 9px;
     height: 20px;
     @include social_logo_bg('fb');
   }
 
-  &.ic-logo-tw {
+  &.icLogo.tw {
     width: 18px;
     height: 20px;
 
     @include social_logo_bg('tw');
   }
 
-  &.ic-logo-inst {
+  &.icLogo.inst {
     width: 20px;
     height: 20px;
     @include social_logo_bg('inst');
   }
 
-  &.ic-logo-tmb {
+  &.icLogo.tmb {
     width: 10px;
     height: 20px;
     @include social_logo_bg('tmb');
   }
 
-  &.ic-logo-pin {
+  &.icLogo.pin {
     width: 16px;
     height: 20px;
     @include social_logo_bg('pin');
   }
 
-  &.ic-logo-vk {
+  &.icLogo.vk {
     width: 24px;
     height: 20px;
     @include social_logo_bg('vk');
@@ -105,7 +109,7 @@
     width: 24px;
     height: 24px;
     background-size: 24px;
-    
+
     &.ic-guest-user--blue {
       @include set_svg_bg('../static/images/icons/ic_guest_user/ic_guest_user_blue');
     }
