@@ -111,7 +111,7 @@ export default getClientInfo => async (ctx, next) => {
       // ----------------------------------
       let scripts = Assetic
         .getScripts(([vendor, app]))
-        .map((asset, i) => <script key={i} type='text/javascript' src={`${asset}`} />)
+        .map((asset, i) => <script key={i} type="text/javascript" src={`${asset}`} />)
 
       Resolver
         .resolve(() => (
@@ -128,14 +128,12 @@ export default getClientInfo => async (ctx, next) => {
           )
 
           head = Helmet.rewind()
-          let body = <div key='body' {...config.app_mount_point} dangerouslySetInnerHTML={{__html: content}} />
+          let body = <div key="body" {...config.app_mount_point} dangerouslySetInnerHTML={{__html: content}} />
           ctx.status = 200
           ctx.body = renderHtmlLayout(head, [body, scripts], data)
 
           resolve()
-
         }).catch(err => handleError({status: 500, message: 'Internal Server Error', error: err}))
-
     })
   })
 }

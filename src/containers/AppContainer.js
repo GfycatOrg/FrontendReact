@@ -14,7 +14,7 @@ class AppContainer extends React.Component {
     store: PropTypes.object.isRequired
   }
 
-  render () {
+  render() {
     const { layout, history, routes, routerKey, store } = this.props
 
     return (

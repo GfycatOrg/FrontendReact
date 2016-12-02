@@ -69,10 +69,10 @@ const Header = () => (
           <button className={style.uploadButton}>Upload</button>
         </Link>
         <div className={style.verticalDivider}></div>
-        <a href={'https://gfycat.com/login?redirect_uri=' + document.location.href}>
+        <a href={'https://gfycat.com/login?redirect_uri='}>
           <button className={style.loginButton}>Log In</button>
         </a>
-        <a href={'https://gfycat.com/signup?redirect_uri=' + document.location.href}>
+        <a href={'https://gfycat.com/signup?redirect_uri='}>
           <button className={style.signupButton}>Sign Up</button>
         </a>
       </span>
@@ -82,7 +82,7 @@ const Header = () => (
             <i className="ic ic-cloud-upload ic-cloud-upload--blue"></i>
           </button>
         </Link>
-        <a href={'https://gfycat.com/login?redirect_uri=' + document.location.href}>
+        <a href={'https://gfycat.com/login?redirect_uri='}>
           <button className={style.loginButton}>
             <i className="ic ic-guest-user ic-guest-user--blue"></i>
           </button>

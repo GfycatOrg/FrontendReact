@@ -63,7 +63,6 @@ let render = (routerKey = null) => {
       />,
       MOUNT_NODE
     )
-
   })
 }
 

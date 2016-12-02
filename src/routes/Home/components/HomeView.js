@@ -5,10 +5,10 @@ import classes from './HomeView.scss'
 
 export const HomeView = () => (
   <div className="text-center">
-    <Helmet title='Home' />
+    <Helmet title="Home" />
     <h4>Welcome!</h4>
     <img
-      alt='This is a duck, because Redux!'
+      alt="This is a duck, because Redux!"
       className={classes.duck}
       src={DuckImage} />
   </div>

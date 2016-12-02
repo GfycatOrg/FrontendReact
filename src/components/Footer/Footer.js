@@ -4,8 +4,6 @@ import footerData from './data.json';
 import style from './Footer.scss'
 import icons from 'styles/icons.scss';
 
-import './Footer.scss';
-
 const PageLink = ({
   text,
   url
@@ -24,7 +22,6 @@ const SocialLink = ({
   name,
   url
 }) => (
-
   <a className={`${style.socialLink} ${style[name]}`} href={url} target="_blank" rel="noopener noreferrer">
     <i className={`${icons.ic} ${icons.icLogo} ${icons[name]} ${style.icLogo} ${style[name]}`}></i>
   </a>

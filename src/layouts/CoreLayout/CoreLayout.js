@@ -1,6 +1,5 @@
 import React from 'react'
 import GfyHeader from '../../components/GfyHeader'
-import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import style from './CoreLayout.scss'
 import '../../styles/core.scss'
