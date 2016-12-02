@@ -3,6 +3,7 @@ import CoreLayout from '../layouts/CoreLayout/CoreLayout'
 import Home from './Home'
 import CounterRoute from './Counter'
 import AsyncRoute from './Async'
+import TeamPage from './TeamPage'
 // import UploadRoute from './Upload'
 
 /*  Note: Instead of using JSX, we recommend using react-router
@@ -15,6 +16,7 @@ export const createRoutes = (store) => ({
   childRoutes: [
     CounterRoute(store),
     AsyncRoute(store),
+    TeamPage()
     // UploadRoute(store)
   ]
 })
