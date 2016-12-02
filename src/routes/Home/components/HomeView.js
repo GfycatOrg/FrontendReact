@@ -4,7 +4,7 @@ import DuckImage from '../assets/Duck.jpg'
 import classes from './HomeView.scss'
 
 export const HomeView = () => (
-  <div>
+  <div className="text-center">
     <Helmet title='Home' />
     <h4>Welcome!</h4>
     <img
