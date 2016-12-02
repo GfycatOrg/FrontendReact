@@ -20,10 +20,40 @@ export default {
   }),
 
   // ======================================================
+  // Overrides when NODE_ENV === 'sandbox'
+  // ======================================================
+  sandbox: (config) => ({
+    compiler_public_path: '/static/',
+    compiler_fail_on_warning: false,
+    compiler_hash_type: 'chunkhash',
+    compiler_devtool: null,
+    compiler_stats: {
+      chunks: true,
+      chunkModules: true,
+      colors: true
+    }
+  }),
+
+  // ======================================================
+  // Overrides when NODE_ENV === 'staging'
+  // ======================================================
+  staging: (config) => ({
+    compiler_public_path: '/static/',
+    compiler_fail_on_warning: false,
+    compiler_hash_type: 'chunkhash',
+    compiler_devtool: null,
+    compiler_stats: {
+      chunks: true,
+      chunkModules: true,
+      colors: true
+    }
+  }),
+
+  // ======================================================
   // Overrides when NODE_ENV === 'production'
   // ======================================================
   production: (config) => ({
-    compiler_public_path: '/',
+    compiler_public_path: '/static/',
     compiler_fail_on_warning: false,
     compiler_hash_type: 'chunkhash',
     compiler_devtool: null,

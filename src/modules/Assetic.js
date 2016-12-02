@@ -1,7 +1,11 @@
+import config from '../../config'
 import layout from '../../config/layout'
 
 const fixLocalAsset = assets => (
-  (Array.isArray(assets) ? assets : [assets]).map(asset => `/${asset}`)
+  (Array.isArray(assets) ? assets : [assets]).map(asset => (
+    `${config.compiler_public_path}${asset}`
+    )
+  )
 )
 
 const normalizeAssets = assets => {

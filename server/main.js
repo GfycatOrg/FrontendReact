@@ -1,5 +1,6 @@
 import Koa from 'koa'
 import convert from 'koa-convert'
+import mount from 'koa-mount'
 import webpack from 'webpack'
 import webpackConfigClient from '../build/webpack.config.client'
 import serve from 'koa-static'
@@ -65,7 +66,8 @@ export default async () => {
     // Serving ~/dist by default. Ideally these files should be served by
     // the web server and not the app server when universal is turned off,
     // but this helps to demo the server in production.
-    app.use(serve(paths.public()))
+    //app.use(serve(paths.public()))
+    app.use(mount('/static', serve(paths.public(), {hidden: true})))
   }
 
   let um = await universalMiddleware()
