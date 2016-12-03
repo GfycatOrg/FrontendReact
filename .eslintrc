@@ -20,10 +20,20 @@
     "__BASENAME__" : false
   },
   "rules": {
-    "semi" : [2, "never"],
+    "semi": 0,
     "max-len": [2, 120, 2],
     "generator-star-spacing": 0,
     "babel/generator-star-spacing": 1,
-    "jsx-quotes": [2, "prefer-single"]
+    "jsx-quotes": [2, "prefer-double"],
+    "react/self-closing-comp": ["error", {
+        "component": true,
+        "html": false
+    }],
+    "space-before-function-paren": ["error", {
+        "anonymous": "never",
+        "named": "never",
+        "asyncArrow": "ignore"
+    }],
+    "no-multiple-empty-lines": ["error", { "max": 2, "maxEOF": 1 }]
   }
 }

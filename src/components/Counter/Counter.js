@@ -4,7 +4,7 @@ import classes from './Counter.scss'
 
 export const Counter = (props) => (
   <div>
-    <Helmet title='Counter' />
+    <Helmet title="Counter" />
     <h2 className={classes.counterContainer}>
       Counter:
       {' '}
@@ -12,11 +12,11 @@ export const Counter = (props) => (
         {props.counter}
       </span>
     </h2>
-    <button className='btn btn-default' onClick={props.increment}>
+    <button className="btn btn-default" onClick={props.increment}>
       Increment
     </button>
     {' '}
-    <button className='btn btn-default' onClick={props.doubleAsync}>
+    <button className="btn btn-default" onClick={props.doubleAsync}>
       Double (Async)
     </button>
   </div>

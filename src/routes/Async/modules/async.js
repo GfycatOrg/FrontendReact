@@ -9,13 +9,13 @@ export const FETCHING_DATA = 'FETCHING_DATA'
 // ------------------------------------
 // Actions
 // ------------------------------------
-export function startFetching () {
+export function startFetching() {
   return {
     type: FETCHING_DATA
   }
 }
 
-export function fetchedData (data) {
+export function fetchedData(data) {
   return {
     type: FETCHED_DATA,
     payload: data
@@ -50,7 +50,7 @@ const ACTION_HANDLERS = {
 // Reducer
 // ------------------------------------
 const initialState = {fetching: false, fetchedData: {}}
-export default function asyncReducer (state = initialState, action) {
+export default function asyncReducer(state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]
 
   return handler ? handler(state, action) : state

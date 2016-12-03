@@ -13,7 +13,7 @@ export class Async extends React.Component {
 
     return (
       <div>
-        <Helmet title='Async' />
+        <Helmet title="Async" />
 
         { JSON.stringify(fetchedData) }
       </div>
@@ -22,7 +22,8 @@ export class Async extends React.Component {
 }
 
 Async.propTypes = {
-  fetchData: React.PropTypes.func.isRequired
+  fetchData: React.PropTypes.func.isRequired,
+  fetchedData: React.PropTypes.object
 }
 
 export default Async

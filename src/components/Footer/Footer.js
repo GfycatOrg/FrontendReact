@@ -1,12 +1,14 @@
 import React from 'react';
-import { pages, socialLinks } from './data';
-import './Footer.scss';
+import footerData from './data.json';
+
+import style from './Footer.scss'
+import icons from 'styles/icons.scss';
 
 const PageLink = ({
   text,
   url
 }) => (
-  <span className="page-link">
+  <span className={style.pageLink}>
     <a alt={text} href={url}>{text}</a>
   </span>
 );
@@ -20,8 +22,8 @@ const SocialLink = ({
   name,
   url
 }) => (
-  <a className={`social-link social-link--${name}`} href={url} target="_blank" rel="noopener noreferrer">
-    <i className={`ic ic-logo-${name}`}></i>
+  <a className={`${style.socialLink} ${style[name]}`} href={url} target="_blank" rel="noopener noreferrer">
+    <i className={`${icons.ic} ${icons.icLogo} ${icons[name]} ${style.icLogo} ${style[name]}`}></i>
   </a>
 );
 
@@ -35,7 +37,7 @@ const Copyright = ({
 }) => {
   if (visible) {
     return (
-      <p className="copyright">© 2016 Gfycat. <span>All rights reserved</span></p>
+      <p className={style.copyright}>© 2016 Gfycat. <span>All rights reserved</span></p>
     );
   }
   return null;
@@ -48,11 +50,11 @@ Copyright.propTypes = {
 const Footer = ({
   isPageStatic
 }) => (
-  <div className="gfy-page-footer">
-    <div className="container">
-      <div className="page-links">
+  <div className={style.gfyPageFooter}>
+    <div className={style.container}>
+      <div className={style.pageLinks}>
         {
-          pages.map((page, index) =>
+          footerData.pages.map((page, index) =>
             <PageLink
               key={index}
               {...page}
@@ -60,9 +62,9 @@ const Footer = ({
           )
         }
       </div>
-      <div className="social-links">
+      <div className={style.socialLinks}>
         {
-          socialLinks.map((link, index) =>
+          footerData.socialLinks.map((link, index) =>
             <SocialLink
               key={index}
               {...link}

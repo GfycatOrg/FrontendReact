@@ -12,6 +12,14 @@ export default Object.freeze({
     {rel: 'shortcut icon', href: '/favicon.ico'},
     {rel: 'stylesheet', href: 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'}
   ],
-  script: [],
-  style: []
+  script: [
+    {src: 'https://assets.gfycat.com/gfycat.js'}
+  ],
+  style: [
+    {
+      "cssText": `
+          @import 'https://fonts.googleapis.com/css?family=Open+Sans:400,300';
+      `
+    }
+  ]
 })

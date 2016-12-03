@@ -1,3 +1,7 @@
+@mixin set_svg_bg($url) {
+  background-image: url($url + '.svg');
+}
+
 .ic {
   position: relative;
   display: inline-block;
@@ -6,107 +10,107 @@
   @mixin social_logo_bg($type) {
     background-position: center;
 
-    &.ic-logo-#{$type}--grey {
+    &.icLogo.#{$type}.grey {
       @include set_svg_bg('../static/images/icons/ic_social/ic_social_#{$type}_grey');
     }
-    &.ic-logo-#{$type}--blue {
+    &.icLogo.#{$type}.blue {
       @include set_svg_bg('../static/images/icons/ic_social/ic_social_#{$type}_blue');
     }
   }
 
-  &.ic-logo-fb {
+  &.icLogo.fb {
     width: 9px;
     height: 20px;
     @include social_logo_bg('fb');
   }
 
-  &.ic-logo-tw {
+  &.icLogo.tw {
     width: 18px;
     height: 20px;
 
     @include social_logo_bg('tw');
   }
 
-  &.ic-logo-inst {
+  &.icLogo.inst {
     width: 20px;
     height: 20px;
     @include social_logo_bg('inst');
   }
 
-  &.ic-logo-tmb {
+  &.icLogo.tmb {
     width: 10px;
     height: 20px;
     @include social_logo_bg('tmb');
   }
 
-  &.ic-logo-pin {
+  &.icLogo.pin {
     width: 16px;
     height: 20px;
     @include social_logo_bg('pin');
   }
 
-  &.ic-logo-vk {
+  &.icLogo.vk {
     width: 24px;
     height: 20px;
     @include social_logo_bg('vk');
   }
 
-  &.ic-cloud-upload {
+  &.icCloudUpload {
     width: 26px;
     height: 20px;
     background-size: 26px 20px;
 
-    &.ic-cloud-upload--blue {
+    &.blue {
       @include set_svg_bg('../static/images/icons/ic_cloud_upload/ic_cloud_upload_blue');
     }
   }
 
-  &.ic-gfycat-logo-big {
+  &.icGfycatLogoBig {
     width: 99px;
     height: 27px;
     background-size: 99px 27px;
 
-    &.ic-gfycat-logo-big--blue {
+    &.blue {
       @include set_svg_bg('../static/images/icons/ic_gfycat_logo_big/ic_gfycat_logo_big_blue');
     }
   }
 
-  &.ic-gfycat-logo-small {
+  &.icGfycatLogoSmall {
     width: 27px;
     height: 27px;
     background-size: 27px;
 
-    &.ic-gfycat-logo-small--blue {
+    &.blue {
       @include set_svg_bg('../static/images/icons/ic_gfycat_logo_small/ic_gfycat_logo_small_blue');
     }
   }
 
-  &.ic-ellipsis {
+  &.icEllipsis {
     width: 16px;
     height: 16px;
     background-size: 16px;
 
-    &.ic-ellipsis--blue {
+    &.blue {
       @include set_svg_bg('../static/images/icons/ic_ellipsis/ic_ellipsis_blue');
     }
   }
 
-  &.ic-search {
+  &.icSearch {
     width: 20px;
     height: 20px;
     background-size: 20px;
 
-    &.ic-search--white {
+    &.white {
       @include set_svg_bg('../static/images/icons/ic_search/ic_search_white');
     }
   }
 
-  &.ic-guest-user {
+  &.icGuestUser {
     width: 24px;
     height: 24px;
     background-size: 24px;
-    
-    &.ic-guest-user--blue {
+
+    &.blue {
       @include set_svg_bg('../static/images/icons/ic_guest_user/ic_guest_user_blue');
     }
   }

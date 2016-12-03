@@ -8,7 +8,7 @@ const debug = _debug('app:server:universal')
 const {__DEV__} = config.globals
 const output = paths.dist(config.universal.output)
 
-export default async function () {
+export default async function() {
   debug('Enable universal middleware.')
 
   if (__DEV__) {
@@ -23,7 +23,7 @@ export default async function () {
   return Promise.resolve(require(output))
 }
 
-function compileServer () {
+function compileServer() {
   return new Promise((resolve, reject) => {
     let compiler = Webpack(webpackConfig)
 
@@ -32,7 +32,7 @@ function compileServer () {
       resolve(true)
     })
 
-    compiler.run(function (err, stats) {
+    compiler.run(function(err, stats) {
       if (err) {
         reject(err)
       }
