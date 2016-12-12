@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, IndexRoute } from 'react-router'
-import App from './App'
+import CoreLayout from '../layouts/CoreLayout'
 import Home from './Home'
 import Team from './Team'
 
@@ -9,7 +9,7 @@ import Team from './Team'
  */
 export const createRoutes = (store) => ({
   path: '/',
-  component: App,
+  component: CoreLayout,
   indexRoute: Home,
   childRoutes: [
     Team
@@ -19,7 +19,7 @@ export const createRoutes = (store) => ({
 /**
  *  The above is equivalent to:
  *
- *  <Route path="/" component={App}>
+ *  <Route path="/" component={CoreLayout}>
  *    <IndexRoute component={Home}/>
  *    <Route path="/team" component={Team}/>
  *  </Route>

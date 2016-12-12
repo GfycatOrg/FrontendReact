@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { IndexLink, Link } from 'react-router'
 import './Header.scss'
+import links from './links'
 
 class Header extends Component {
   // static propTypes = {
