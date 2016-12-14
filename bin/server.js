@@ -26,9 +26,10 @@ module.exports = {
       app.use(helmet())
     }
 
-    const publicPath = express.static(path.resolve(__dirname, 'dist'))
+    const publicPath = express.static(path.resolve(__dirname, '../dist'))
 
     app.use('/static', publicPath)
+
     // app.get('/*', (req, res) => {
     //   res.sendFile(path.resolve(__dirname, '../index.html'));
     // })

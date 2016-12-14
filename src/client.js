@@ -5,6 +5,7 @@ import { syncHistoryWithStore } from 'react-router-redux'
 import AppContainer from './containers/AppContainer'
 import configureStore from './store/configureStore'
 import createRoutes from './routes'
+import TemplateLayout from './layouts/TemplateLayout'
 
 const store = configureStore(browserHistory)
 const routes = createRoutes(store)
@@ -12,6 +13,6 @@ const history = syncHistoryWithStore(browserHistory, store)
 
 
 render(
-  <AppContainer history={history} store={store} routes={routes} />,
+  <AppContainer history={history} layout={TemplateLayout} store={store} routes={routes} />,
   document.getElementById('root')
 )

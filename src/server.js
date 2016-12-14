@@ -3,6 +3,9 @@ import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { browserHistory, createMemoryHistory, match, RouterContext } from 'react-router'
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
+import Helmet from 'react-helmet'
+import { renderHtmlLayout } from 'helmet-webpack-plugin'
+import TemplateLayout from './layouts/TemplateLayout'
 import AppContainer from './containers/AppContainer'
 import configureStore from './store/configureStore'
 import createRoutes from './routes'
@@ -24,15 +27,25 @@ export default function universalMiddleware(req, res, next) {
     } else if (props) {
       console.log('renderProps', props)
       const renderedPage = renderPage(history, store, props)
-      console.log(renderedPage)
       res.send(renderedPage)
     } else {
+      //TODO: render 404 page
       res.sendStatus(404)
     }
   })
 }
 
-const renderPage = (history, store, { routes }) => (
-  renderToString(<AppContainer history={history} store={store} routes={routes[0]} />)
-)
+const renderPage = (history, store, { routes }) => {
+  const layout = Object.assign(TemplateLayout, {link: [
+    {rel: 'stylesheet', href: '/static/server.css'}
+  ]})
+  console.log('layout', layout)
+  const content = renderToString(<AppContainer history={history} layout={layout} store={store} routes={routes[0]} />)
+  const head = Helmet.rewind()
+  // key is purely for react to iterate the array
+  const body = <div key='body' id='root' dangerouslySetInnerHTML={{__html:content}} />
+  const scripts = <script key='scripts' type='text/javascript' src='/static/bundle.js' />
+  return renderHtmlLayout(head, [body, scripts])
+  // return content
+}
 

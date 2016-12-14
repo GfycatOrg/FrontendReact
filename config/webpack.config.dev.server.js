@@ -1,13 +1,14 @@
-var path = require('path');
-var webpack = require('webpack');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+const path = require('path')
+const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+// const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const ExtractCSS = new ExtractTextPlugin('[name].css', {
   allChunks: false,
   disable: false
 });
 
-const ExtractSCSS = new ExtractTextPlugin('[name].scss', {
+const ExtractSCSS = new ExtractTextPlugin('[name].css', {
   allChunks: false,
   disable: false
 });
@@ -32,7 +33,18 @@ module.exports = {
     plugins: [
       new webpack.optimize.OccurenceOrderPlugin(),
       ExtractCSS,
-      ExtractSCSS
+      ExtractSCSS,
+      // new HtmlWebpackPlugin({
+      //   template: path.resolve(__dirname, '../index.html'),
+      //   hash: false,
+      //   favicon: path.resolve(__dirname, '../favicon.ico'),
+      //   filename: 'index.html',
+      //   inject: false,
+      //   /*minify: {
+      //     collapseInlineTagWhitespace: true,
+      //     collapseWhitespace: true,
+      //   }*/
+      // })
     ],
     module: {
       loaders: [
@@ -47,19 +59,23 @@ module.exports = {
         },
         { test: /\.json$/, loader: 'json-loader' },
         { test: /\.scss$/, 
-          loader: ExtractSCSS.extract(['css', 'sass'])},
+          loader: ExtractSCSS.extract(['css', 'sass']) },
         { test: /\.css$/,
-          loader: ExtractCSS.extract(['css'])},
+          loader: ExtractCSS.extract(['css']) },
         // { test: /\.scss?$/,
         //   loader: 'style!css!sass' },
         // { test: /\.css?$/,
         //   loader: 'style!css' },
-        { test: /\.png$/,
+        { test: /\.(jpe?g|png|gif|svg)$/i,
+          loaders: [
+            'file?hash=sha512&digest=hex&name=[hash].[ext]',
+            'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
+          ] },
+        { test: /\.(ttf|eot|woff(2)?)(\?[a-z0-9]+)?$/,
           loader: 'file' },
-        { test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
-          loader: 'file'},
         { test: /\.json$/,
-          loader: 'json'
+          loader: 'json',
+          exclude: path.resolve(__dirname, '../node_modules')
         }
       ]
     }
