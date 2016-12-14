@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react'
-import { IndexLink, Link } from 'react-router'
+import Nav from '../Nav'
+import Search from '../Search'
+import UserMenu from '../UserMenu'
 import './Header.scss'
-import links from './links'
 
 class Header extends Component {
   // static propTypes = {
@@ -12,11 +13,10 @@ class Header extends Component {
     // const { store } = this.props
 
     return (
-      <div className='header-container'>
-        <div className=''>
-          test
-        </div>
-      </div>
+      <header className='header-container'>
+        <Nav />
+        <Search />
+      </header>
     )
   }
 }

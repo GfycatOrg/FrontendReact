@@ -1,0 +1,12 @@
+.menu-container {
+  position: relative;
+  display: inline-block;
+
+  li {
+    list-style: none;
+  }
+
+  .active {
+    color: red;
+  }
+}

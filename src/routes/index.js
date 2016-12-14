@@ -7,14 +7,37 @@ import Team from './Team'
 /**
  *  Use react-router PlainRoute object to build route definitions
  */
-export const createRoutes = (store) => ({
-  path: '/',
-  component: CoreLayout,
-  indexRoute: Home,
-  childRoutes: [
-    Team
-  ]
-})
+export const createRoutes = (store) => {
+  const requireAuth = (nextState, replace, cb) => {
+    const { authenticated } = store.getState()
+    if (!authenticated) {
+      replace({
+        pathname: '/login',
+        state: { nextPathname: nextState.location.pathname }
+      })
+    }
+    cb()
+  }
+
+  const redirectAuth = (nextState, replace, cb) => {
+    const { authenticated } = store.getState()
+    if (authenticated) {
+      replace({
+        pathname: '/'
+      })
+    }
+    cb()
+  }
+
+  return ({
+    path: '/',
+    component: CoreLayout,
+    indexRoute: Home,
+    childRoutes: [
+      Team
+    ]
+  })
+}
 
 /**
  *  The above is equivalent to:

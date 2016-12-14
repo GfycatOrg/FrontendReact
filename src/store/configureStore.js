@@ -1,10 +1,12 @@
 import createStore from './createStore'
 import throttle from 'lodash/throttle'
 import { loadState, setState } from './localStorage'
+// import { browserHistory } from 'react-router'
+// import { syncHistoryWithStore } from 'react-router-redux'
 
-const configureStore = () => {
+const configureStore = (history) => {
   const persistedState = loadState()
-  const store = createStore(persistedState)
+  const store = createStore(persistedState, history)
 
   store.subscribe(throttle(() => {
     setState(store.getState())

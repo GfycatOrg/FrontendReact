@@ -3,7 +3,10 @@ import './HomeView.scss'
 
 export const HomeView = () => (
   <div className='home-view'>
-    <h1>test</h1>
+    <h1>Home View</h1>
+    <div>
+      test home view
+    </div>
   </div>
 )
 

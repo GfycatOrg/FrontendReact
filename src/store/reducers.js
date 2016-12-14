@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { routerReducer as router } from 'react-router-redux'
+import { routerReducer } from 'react-router-redux'
 
 const initialReducers = {
   team: (state = {}) => state
@@ -7,7 +7,7 @@ const initialReducers = {
 
 export const makeRootReducer = (asyncReducers) => {
   return combineReducers({
-    routing: router,
+    routing: routerReducer,
     ...initialReducers,
     ...asyncReducers
   })
