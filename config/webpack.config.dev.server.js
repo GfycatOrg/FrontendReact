@@ -62,10 +62,6 @@ module.exports = {
           loader: ExtractSCSS.extract(['css', 'sass']) },
         { test: /\.css$/,
           loader: ExtractCSS.extract(['css']) },
-        // { test: /\.scss?$/,
-        //   loader: 'style!css!sass' },
-        // { test: /\.css?$/,
-        //   loader: 'style!css' },
         { test: /\.(jpe?g|png|gif|svg)$/i,
           loaders: [
             'file?hash=sha512&digest=hex&name=[hash].[ext]',
