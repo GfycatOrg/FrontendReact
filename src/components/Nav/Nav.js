@@ -7,6 +7,10 @@ const links = [
   {
     title: 'Team',
     path: '/team'
+  },
+  {
+    title: 'Async Example',
+    path: '/async_example'
   }
 ]
 

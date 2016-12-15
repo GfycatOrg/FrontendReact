@@ -2,7 +2,8 @@ import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
 
 const initialReducers = {
-  team: (state = {}) => state
+  team: (state = {}) => state,
+  AsyncExample: ( state = {}) => state
 }
 
 export const makeRootReducer = (asyncReducers) => {

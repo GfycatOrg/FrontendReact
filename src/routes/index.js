@@ -3,6 +3,7 @@ import { Route, IndexRoute } from 'react-router'
 import CoreLayout from '../layouts/CoreLayout'
 import Home from './Home'
 import Team from './Team'
+import AsyncExample from './AsyncExample'
 
 /**
  *  Use react-router PlainRoute object to build route definitions
@@ -34,7 +35,8 @@ export const createRoutes = (store) => {
     component: CoreLayout,
     indexRoute: Home,
     childRoutes: [
-      Team
+      Team,
+      AsyncExample(store)
     ]
   })
 }

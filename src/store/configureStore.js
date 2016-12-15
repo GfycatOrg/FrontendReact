@@ -6,6 +6,7 @@ import { loadState, setState } from './localStorage'
 
 const configureStore = (history) => {
   const persistedState = loadState()
+  console.log('persisted state', persistedState)
   const store = createStore(persistedState, history)
 
   store.subscribe(throttle(() => {
