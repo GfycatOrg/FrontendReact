@@ -8,17 +8,18 @@ class AppContainer extends Component {
     history: PropTypes.object.isRequired,
     layout: PropTypes.object.isRequired,
     routes: PropTypes.object.isRequired,
-    store: PropTypes.object.isRequired
+    store: PropTypes.object.isRequired,
+    routerKey: PropTypes.number
   }
 
   render() {
-    const { history, layout, routes, store } = this.props
+    const { history, layout, routes, routerKey, store } = this.props
 
     return (
       <Provider store={store}>
         <div>
           <Helmet {...layout} />
-          <Router history={history} children={routes} />
+          <Router history={history} children={routes} key={routerKey} />
         </div>
       </Provider>
     )

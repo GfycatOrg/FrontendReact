@@ -12,13 +12,6 @@ const store = configureStore(browserHistory)
 const routes = createRoutes(store)
 const history = syncHistoryWithStore(browserHistory, store)
 
-
-// render(
-//   <AppContainer history={history} layout={TemplateLayout} store={store} routes={routes} />,
-//   document.getElementById('root')
-// )
-
-
 let _render = (routerKey = null) => {
   match({ history, routes }, (error, redirect, props) => {
     if (error) {
@@ -27,7 +20,7 @@ let _render = (routerKey = null) => {
     }
 
     Resolver.render( () => 
-      <AppContainer {...props} history={history} layout={TemplateLayout} store={store} routes={routes} />, 
+      <AppContainer {...props} routerKey={routerKey} history={history} layout={TemplateLayout} store={store} routes={routes} />, 
       document.getElementById('root'))
   })
 }

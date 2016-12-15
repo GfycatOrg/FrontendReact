@@ -14,7 +14,6 @@ import createRoutes from './routes'
 export default function universalMiddleware(req, res, next) {
   const params = qs.parse(req.query)
   const memoryHistory = createMemoryHistory(req.originalUrl)
-  console.log('memory history', memoryHistory)
   const store = configureStore(memoryHistory)
   const routes = createRoutes(store)
   const history = syncHistoryWithStore(memoryHistory, store)
@@ -26,10 +25,7 @@ export default function universalMiddleware(req, res, next) {
       console.error('Router error', err)
         res.status(500).json(err)
     } else if (props) {
-      console.log('renderProps', props)
-      // const renderedPage = renderPage(history, store, props)
-      renderPage(history, store, props).then( renderedPage => res.send(renderedPage))
-      // res.send(renderedPage)
+      renderPage(history, store, props, routes).then( renderedPage => res.send(renderedPage))
     } else {
       //TODO: render 404 page
       res.sendStatus(404)
@@ -37,19 +33,21 @@ export default function universalMiddleware(req, res, next) {
   })
 }
 
-const renderPage = (history, store, { routes }) => {
+const renderPage = (history, store, renderProps, routes) => {
   const layout = Object.assign(TemplateLayout, {link: [
     {rel: 'stylesheet', href: '/static/server.css'}
   ]})
-  console.log('layout', layout)
-  // const content = renderToString(<AppContainer history={history} layout={layout} store={store} routes={routes[0]} />)
-  return Resolver.resolve( () => (<AppContainer history={history} layout={layout} store={store} routes={routes[0]} />)).then( ({ Resolved, data }) => {
+
+  return Resolver.resolve( () => (<AppContainer {...renderProps} routerKey={Math.random()} history={history} layout={layout} store={store} routes={routes} />)).then( ({ Resolved, data }) => {
     const content = renderToString(<Resolved />)
     const head = Helmet.rewind()
     // key is purely for react to iterate the array
     const body = <div key='body' id='root' dangerouslySetInnerHTML={{__html:content}} />
-    const scripts = <script key='scripts' type='text/javascript' src='/static/bundle.js' />
-    return renderHtmlLayout(head, [body, scripts])
+    const scripts = [
+      <script key='scripts' type='text/javascript' src='/static/bundle.js' />,
+      <script key='resolverPayload' type='text/javascript'>__REACT_RESOLVER_PAYLOAD__={JSON.stringify(data)}</script>
+    ]
+    return renderHtmlLayout(head, [body, ...scripts])
   })
 }
 

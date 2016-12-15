@@ -18,5 +18,6 @@ export const setState = (state) => {
   } catch (err) {
     //Ignore write errors 
     //TODO: log errors
+    console.error('Error setting state')
   }
 }

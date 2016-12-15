@@ -3,7 +3,7 @@ import { routerReducer } from 'react-router-redux'
 
 const initialReducers = {
   team: (state = {}) => state,
-  AsyncExample: ( state = {}) => state
+  asyncexample: ( state = {}) => state
 }
 
 export const makeRootReducer = (asyncReducers) => {

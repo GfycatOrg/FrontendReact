@@ -5,7 +5,7 @@ import asyncExampleReducer from './modules/AsyncExampleModule'
 export default (store) => ({
   path: 'async_example',
   getComponent (nextState, cb) {
-    injectReducer(store, { key: 'AsyncExample', reducer: asyncExampleReducer })
+    injectReducer(store, { key: 'asyncexample', reducer: asyncExampleReducer })
     cb(null, AsyncExample)
   }
 })
