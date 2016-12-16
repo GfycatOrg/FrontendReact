@@ -12,6 +12,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
+  font-family: $base_font;
 }
 
 *,
@@ -19,3 +20,4 @@ body {
 *:after {
   box-sizing: inherit;
 }
+

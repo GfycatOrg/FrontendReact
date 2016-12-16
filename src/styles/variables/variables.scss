@@ -1,0 +1,46 @@
+/**
+ * Color
+ */
+
+$gfycat_blue: #2475ff;
+$gfycat_grey: #666666;
+$gfycat_dark_background: #223037;
+$gfycat_warm_grey: #939393;
+$gfycat-dark: #223037;
+$gfycat_light_grey: #d8d8d8;
+
+/**
+ * Layout variables
+ */
+
+$break_huge: 1222px;
+$break_large: 1015px;
+$break_medium: 825px;
+$break_small: 620px;
+$break_tiny: 480px;
+$break_xtiny: 320px;
+
+$container_large: 1162px;
+$container_medium: 766px;
+$container_small: 590px;
+
+$page_margin_medium: 30px;
+
+$gfycat_container_width: 1162px;
+$gfycat_channel_width: 180px;
+$gfycat_channel_height: 101px;
+$gfycat_tv_height: 550px;
+$gfycat_tv_max_width: 782px;
+$gfycat_channel_margin_horizontal:10px;
+$gfycat_channel_margin_vertical:9px;
+
+/**
+ * Boostrap variables overrides
+ */
+
+$navbar-default-bg:                #ffffff !default;
+
+$base_font: 'Open Sans', sans-serif,"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+
+$modal_track_bar_bg_color: rgba(144, 147, 152, 0.2);
+$modal_track_bar_cursor: #c4d8ff;
