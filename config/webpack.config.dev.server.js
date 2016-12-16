@@ -1,6 +1,9 @@
+'use strict'
+
 const path = require('path')
-const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const webpack = require('webpack')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const config = require('./config')
 
 const ExtractCSS = new ExtractTextPlugin('[name].css', {
   allChunks: false,
