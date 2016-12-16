@@ -5,6 +5,7 @@ import { browserHistory, createMemoryHistory, match, RouterContext } from 'react
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 import Helmet from 'react-helmet'
 import { renderHtmlLayout } from 'helmet-webpack-plugin'
+// import { renderHtmlLayout } from './utils/renderHtmlLayout'
 import { Resolver } from 'react-resolver'
 import TemplateLayout from './layouts/TemplateLayout'
 import AppContainer from './containers/AppContainer'
@@ -44,10 +45,16 @@ const renderPage = (history, store, renderProps, routes) => {
     // key is purely for react to iterate the array
     const body = <div key='body' id='root' dangerouslySetInnerHTML={{__html:content}} />
     const scripts = [
-      <script key='scripts' type='text/javascript' src='/static/bundle.js' />,
-      <script key='resolverPayload' type='text/javascript'>__REACT_RESOLVER_PAYLOAD__={JSON.stringify(data)}</script>
+      <script key='clientBundle' type='text/javascript' src='/static/bundle.js' />,
+      <script key='resolverPayload' type='text/javascript'>__REACT_RESOLVER_PAYLOAD__={JSON.stringify(data)}</script>,
+      <script key='initalState' type='text/javascript'>`___INITIAL_STATE__ = ${JSON.stringify(store.getState())}`</script>
     ]
+    // const scripts = [
+    //   <script key='clientBundle' type='text/javascript' src='/static/bundle.js' />,
+    //   <script key='initalState' type='text/javascript'>`___INITIAL_STATE__ = ${JSON.stringify(store.getState())}`</script>
+    // ]
+
     return renderHtmlLayout(head, [body, ...scripts])
+    // return renderHtmlLayout(head, [body, ...scripts], data)
   })
 }
-

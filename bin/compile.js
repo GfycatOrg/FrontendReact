@@ -4,7 +4,7 @@ const webpack = require('webpack')
 const config = require('../config/project.config')
 const debug = require('debug')('app:bin:compile')
 
-const webpackCompiler = (webpackConfig) => 
+const webpackCompiler = (webpackConfig) =>
   new Promise( (resolve, reject) => {
     const compiler = webpack(webpackConfig)
 
@@ -15,7 +15,7 @@ const webpackCompiler = (webpackConfig) =>
       }
 
       const jsonStats = stats.toJson()
-      
+
       debug('Webpack compile completed.')
       debug(stats.toString(config.compiler_stats))
 
@@ -62,4 +62,4 @@ const compileClient = () => {
 }
 
 compileServer()
-compileClient()
+if (process.env.NODE_ENV === 'production') compileClient()

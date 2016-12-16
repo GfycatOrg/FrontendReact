@@ -68,7 +68,7 @@ const webpackConfig = {
           exclude: /node_modules/
         },
         { test: /\.json$/, loader: 'json-loader' },
-        { test: /\.scss$/, 
+        { test: /\.scss$/,
           loader: ExtractSCSS.extract(['css', 'sass']) },
         { test: /\.css$/,
           loader: ExtractCSS.extract(['css']) },
@@ -78,11 +78,7 @@ const webpackConfig = {
             'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
           ] },
         { test: /\.(ttf|eot|woff(2)?)(\?[a-z0-9]+)?$/,
-          loader: 'file' },
-        { test: /\.json$/,
-          loader: 'json',
-          exclude: /node_modules/
-        }
+          loader: 'file' }
       ]
     }
 }
@@ -99,15 +95,16 @@ if (__DEV__) {
   webpackConfig.plugins.push(
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        unused: true,
-        dead_code: true,
-        warnings: false
-      }
-    }),
+    // new webpack.optimize.UglifyJsPlugin({
+    //   mangle: false,
+    //   compress: {
+    //     unused: true,
+    //     dead_code: true,
+    //     warnings: false
+    //   }
+    // }),
     new CopyWebpackPlugin([
-      { from: config.paths.src('static'), //path.resolve(__dirname, '../src/static'), 
+      { from: config.paths.src('static'), //path.resolve(__dirname, '../src/static'),
         to: config.paths.public() } //path.resolve(__dirname, '../dist') }
     ])
   )
@@ -116,4 +113,3 @@ if (__DEV__) {
 
 
 module.exports = webpackConfig
-

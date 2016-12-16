@@ -17,15 +17,7 @@ const links = [
 export const Nav = () => (
   <nav className='nav-container'>
     <Menu links={links} />
-  {/*<ul>
-      <li>
-        <IndexLink to='/' activeClassName='active'>Home</IndexLink>
-      </li>
-      <li>
-        <Link to='/team' activeClassName='active'>Team</Link>
-      </li>
-    </ul>*/}
-
+    <button>Login</button>
   </nav>
 )
 

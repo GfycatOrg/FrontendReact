@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
+import { RootModalReducer } from '../components/RootModal'
 
 const initialReducers = {
-  team: (state = {}) => state,
-  asyncexample: ( state = {}) => state
+  modal: RootModalReducer
 }
 
 export const makeRootReducer = (asyncReducers) => {

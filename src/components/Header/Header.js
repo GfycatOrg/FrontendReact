@@ -3,6 +3,7 @@ import Nav from '../Nav'
 import Search from '../Search'
 import UserMenu from '../UserMenu'
 import './Header.scss'
+//import openModal from '../RootModal'
 
 class Header extends Component {
   // static propTypes = {
@@ -16,6 +17,7 @@ class Header extends Component {
       <header className='header-container'>
         <Nav />
         <Search />
+        {/*<button onClick={() => {dispatch(openModal({modalType: 'login'}))}}>Login</button>*/}
       </header>
     )
   }

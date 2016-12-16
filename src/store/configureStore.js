@@ -5,7 +5,8 @@ import { loadState, setState } from './localStorage'
 // import { syncHistoryWithStore } from 'react-router-redux'
 
 const configureStore = (history) => {
-  const persistedState = loadState()
+  // const persistedState = loadState()
+  const persistedState = typeof window !== undefined && window ? window.___INITIAL_STATE__ : loadState()
   const store = createStore(persistedState, history)
 
   store.subscribe(throttle(() => {

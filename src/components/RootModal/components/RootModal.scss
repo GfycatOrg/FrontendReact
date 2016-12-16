@@ -7,9 +7,9 @@
 }
 
 .modal-container {
-  // position: absolute;
   position: fixed;
   transform: translate(-50%, -50%);
+  z-index: 1;
   top: 50%;
   left: 50%;
   width: 40%;
@@ -17,4 +17,12 @@
   padding: 1rem;
   border-radius: 1rem;
   background-color: pink;
+}
+
+.active {
+  display: block;
+}
+
+.inactive {
+  display: none;
 }

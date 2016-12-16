@@ -26,6 +26,10 @@ export const errorFetching = (err) => ({
   error: err
 })
 
+
+/**
+ *  Action Creators
+ */
 export const fetchData = () => {
   return (dispatch) => {
     dispatch(startFetching())
@@ -39,6 +43,10 @@ export const fetchData = () => {
   }
 }
 
+
+/**
+ *  Export all action creators in one object
+ */
 export const actions = { fetchData }
 
 

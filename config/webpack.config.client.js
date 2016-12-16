@@ -19,7 +19,7 @@ const webpackConfig = {
   // },
   // module: {},
   entry: {
-    app: __DEV__ ? 
+    app: __DEV__ ?
       [ `webpack-hot-middleware/client?path${config.compiler_public_path}__webpack_hmr`, config.paths.src('client.js') ] :
       [ config.paths.src('client.js') ],
     // vendor: config.compiler_vendors
@@ -48,7 +48,7 @@ const webpackConfig = {
       { test: /\.(js|jsx)?$/,
         loader: 'babel',
         exclude: /node_modules/,
-        include: config.paths.src(),
+        include: [config.paths.src(), config.paths.base('config')],
         query: {
           presets: ['es2015', 'react', 'stage-0'],
           plugins: ["transform-decorators-legacy"]
@@ -66,7 +66,7 @@ const webpackConfig = {
       { test: /\.(ttf|eot|woff(2)?)(\?[a-z0-9]+)?$/,
         loader: 'file' },
       { test: /\.json$/,
-        loader: 'json' }
+        loader: 'json-loader' }
     ]
   }
 }
@@ -92,4 +92,3 @@ if (__DEV__) {
 }
 
 module.exports = webpackConfig
-

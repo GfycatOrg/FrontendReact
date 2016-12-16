@@ -16,7 +16,7 @@ export const renderHtmlLayout = (head, body, resolverPayload = {}) => {
       head.style.toComponenet(),
       React.createElement(
         'script',
-        { dangerouslySetInnerHTML: 
+        { dangerouslySetInnerHTML:
           { __html: `__REACT_RESOLVER_PAYLOAD__=${JSON.stringify(resolverPayload)}` }
         }
       ),
@@ -24,6 +24,5 @@ export const renderHtmlLayout = (head, body, resolverPayload = {}) => {
     )
   )
 
-  return '<!DOCTYPE html>'
+  return '<!DOCTYPE html>' + html
 }
-
