@@ -1,14 +1,15 @@
 'use strict'
 
 const webpack = require('webpack')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const config = require('./project.config')
-const debug = require('debug')('app:config:webpack:dev:server')
+const debug = require('debug')('app:config:webpack:server')
 
 const __DEV__ = config.globals.__DEV__
 const __PROD__ = config.globals.__PROD__
 
-debug('Creating webpack dev server configuration')
+debug('Creating webpack server configuration')
 
 const ExtractCSS = new ExtractTextPlugin('[name].css', {
   allChunks: false,
@@ -23,7 +24,7 @@ const ExtractSCSS = new ExtractTextPlugin('[name].css', {
 
 // The configuration for the server-side rendering
 const webpackConfig = {
-    name: 'dev.server',
+    name: 'server',
     devtool: config.compiler_devtool,
     // resolve: {
     //   root: config.paths.src(),
@@ -104,9 +105,15 @@ if (__DEV__) {
         dead_code: true,
         warnings: false
       }
-    })
+    }),
+    new CopyWebpackPlugin([
+      { from: config.paths.base('static'), //path.resolve(__dirname, '../src/static'), 
+        to: config.paths.public() //path.resolve(__dirname, '../dist') }
+    ])
   )
 }
+
+
 
 module.exports = webpackConfig
 

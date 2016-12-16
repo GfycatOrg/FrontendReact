@@ -3,6 +3,7 @@ const express = require('express')
 const compression = require('compression')
 const helmet = require('helmet')
 const universalMiddleware = require('../dist/server').default
+const config = require('../config/project.config')
 
 module.exports = {
   app: function () {
@@ -12,12 +13,15 @@ module.exports = {
       const webpack = require('webpack')
       const webpackDevMiddleware = require('webpack-dev-middleware')
       const webpackHotMiddleware = require('webpack-hot-middleware')
-      const config = require('../config/webpack.config.dev.client')
-      const compiler = webpack(config)
+      const webpackConfig = require('../config/webpack.config.client')
+      // const webpackConfig = require('../config/webpack.config.dev.client')
+      const compiler = webpack(webpackConfig)
+
+      console.log('public path', webpackConfig.output.publicPath)
 
       app.use(webpackDevMiddleware(compiler, {
         noInfo: true,
-        publicPath: config.output.publicPath
+        publicPath: webpackConfig.output.publicPath
       }))
       
       app.use(webpackHotMiddleware(compiler))
@@ -26,7 +30,7 @@ module.exports = {
       app.use(helmet())
     }
 
-    const publicPath = express.static(path.resolve(__dirname, '../dist'))
+    const publicPath = express.static(config.paths.dist())
 
     app.use('/static', publicPath)
 
