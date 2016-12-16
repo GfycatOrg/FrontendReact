@@ -55,11 +55,11 @@ const compileClient = () => {
     if (stats.warnings.length && config.compiler_fail_on_warning) {
       throw new Error('compiler_fail_on_warning enabled, exit build.')
     }
-    debug('Client build success.', stats)
+    debug('Client build success.')
   }).catch( err => {
     debug('Client build failure.')
   })
 }
 
-// compileServer()
+compileServer()
 compileClient()

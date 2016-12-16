@@ -107,8 +107,8 @@ if (__DEV__) {
       }
     }),
     new CopyWebpackPlugin([
-      { from: config.paths.base('static'), //path.resolve(__dirname, '../src/static'), 
-        to: config.paths.public() //path.resolve(__dirname, '../dist') }
+      { from: config.paths.src('static'), //path.resolve(__dirname, '../src/static'), 
+        to: config.paths.public() } //path.resolve(__dirname, '../dist') }
     ])
   )
 }
