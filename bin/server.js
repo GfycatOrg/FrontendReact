@@ -1,5 +1,6 @@
 const path = require('path')
 const express = require('express')
+const favicon = require('serve-favicon')
 const compression = require('compression')
 const helmet = require('helmet')
 const universalMiddleware = require('../dist/server').default
@@ -34,9 +35,7 @@ module.exports = {
 
     app.use('/static', publicPath)
 
-    // app.get('/*', (req, res) => {
-    //   res.sendFile(path.resolve(__dirname, '../index.html'));
-    // })
+    app.use(favicon(config.paths.public('favicons/favicon.ico')))
 
     app.use('*', universalMiddleware)
 
