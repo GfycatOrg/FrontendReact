@@ -1,5 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   devtool: 'sourcemap-map',
@@ -28,7 +29,11 @@ module.exports = {
       compress: {
         warnings: false
       }
-    })
+    }),
+    new CopyWebpackPlugin([
+      { from: path.resolve(__dirname, '../src/static'), 
+        to: path.resolve(__dirname, '../dist') }
+    ])
   ],
 
   module: {

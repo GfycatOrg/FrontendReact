@@ -26,13 +26,13 @@ module.exports = {
       // The filename of the entry chunk as relative path inside the output.path directory
       filename: 'server.js',
       // The output path from the view of the Javascript
-      publicPath: 'http://localhost:3000/static/',
+      publicPath: '/static/',
       libraryTarget: 'commonjs2'
     },
     plugins: [
       new webpack.optimize.OccurenceOrderPlugin(),
       ExtractCSS,
-      ExtractSCSS,
+      ExtractSCSS
     ],
     module: {
       loaders: [

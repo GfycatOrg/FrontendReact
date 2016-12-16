@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/" xmlns:moz="http://www.mozilla.org/2006/browser/search/">
+  <ShortName>Gfycat</ShortName>
+  <LongName>Gfycat | Create, discover and share awesome GIFs</LongName>
+  <Description>Gfycat lets you create, discover and share awesome GIFs, amazing moments and funny reactions</Description>
+  <InputEncoding>UTF-8</InputEncoding>
+  <Image width="16" height="16" type="image/x-icon">https:gfycat.com/gfycat-favicon.ico</Image>
+  <Url type="text/html" method="get" template="https://gfycat.com/search/{searchTerms}"/>
+</OpenSearchDescription>
