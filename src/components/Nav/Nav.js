@@ -17,7 +17,6 @@ const links = [
 export const Nav = () => (
   <nav className='nav-container'>
     <Menu links={links} />
-    <button>Login</button>
   </nav>
 )
 

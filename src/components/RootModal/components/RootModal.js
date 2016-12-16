@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import './RootModal.scss'
-import LoginModal from './LoginModal'
+import LoginModal from '../../LoginModal'
 
 const MODAL_COMPONENTS = {
   'LOGIN': LoginModal
@@ -14,8 +14,6 @@ class RootModal extends Component {
 
   constructor(props) {
     super(props)
-    console.log('props', this.props)
-    const { modalType, modalProps } = this.props
   }
 
   handleOnOutsideClick(event) {
@@ -23,9 +21,11 @@ class RootModal extends Component {
   }
 
   render() {
-    if (typeof modalType === undefined) return <div>no data</div>
-
+    const { modalType, modalProps } = this.props
+    console.log('modalType', modalType, 'modalProps', modalProps)
+    if (typeof modalType === undefined || !modalType) return null
     const ActiveModal = MODAL_COMPONENTS[modalType]
+    console.log('active modal', ActiveModal)
     return (
       <ActiveModal {...modalProps} />
     )

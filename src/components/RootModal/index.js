@@ -1,6 +1,6 @@
 import RootModal from './containers/RootModalContainer'
-import RootModalReducer from './modules/RootModalModule'
+import RootModalReducer, { actions } from './modules/RootModalModule'
 
-export { RootModalReducer }
+export { RootModalReducer, actions }
 
 export default RootModal

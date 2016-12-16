@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import Header from '../../components/Header'
-// import RootModal from '../../components/RootModal'
+import RootModal from '../../components/RootModal'
 import Footer from '../../components/Footer'
 import '../../styles/core.scss'
 import './CoreLayout.scss'
@@ -16,7 +16,7 @@ class CoreLayout extends Component {
     return (
       <div className='core-layout-container'>
         <Header />
-        {/*<RootModal />*/}
+        <RootModal />
         <div className='component-container'>{children}</div>
         <Footer />
       </div>
