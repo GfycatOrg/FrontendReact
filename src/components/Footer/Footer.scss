@@ -3,10 +3,13 @@
 }
 
 .gfy-page-footer {
+  position: relative;
   width: 100%;
+  height: 10%;
   max-width: 1162px;
   margin: 30px auto 0;
   .container {
+    position: absolute;
     padding: 25px 15px 50px;
     text-align: center;
     color: #666666;
