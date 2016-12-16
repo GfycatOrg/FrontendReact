@@ -6,10 +6,10 @@ const debug = require('debug')('app:config')
 
 debug('Creating default project configuration')
 
-
 /**
  *  Default configuration
  */
+
 const config = {
   env: process.env.NODE_ENV || 'development',
 
@@ -17,10 +17,9 @@ const config = {
    *  Project structure
    */
   path_base: path.resolve(__dirname, '..'),
-  dir_client: 'src',
   dir_dist: 'dist',
-  dir_public: 'static',
-  dir_server: 'bin',
+  dir_public: 'dist/public',
+  dir_src: 'src',
 
   /**
    *  Server configuration
@@ -79,14 +78,14 @@ config.compiler_vendors = config.compiler_vendors.filter( (dep) => {
 /**
  *  Utilities
  */
-const base = () => {
-  const args = [config.path_base].concat([].slice.call(argument))
+function base() {
+  const args = [config.path_base].concat([].slice.call(arguments))
   return path.resolve.apply(path, args)
 }
 
 config.paths = {
   base: base,
-  client: base.bind(null, config.dir_client),
+  src: base.bind(null, config.dir_src),
   public: base.bind(null, config.dir_public),
   dist: base.bind(null, config.dir_dist)
 }
