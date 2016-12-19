@@ -9,8 +9,10 @@
   "author": "Josh <josh@gfycat.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node bin/app",
-    "dev": "NODE_ENV=development node bin/app"
+    "start": "NODE_ENV=production DEBUG=app:* node bin/app",
+    "start:prod": "NODE_ENV=production PORT=server.sock node bin/app",
+    "deploy:prod": "NODE_ENV=production DEBUG=app:* node bin/compile",
+    "dev": "NODE_ENV=development DEBUG=app:* node bin/app"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
