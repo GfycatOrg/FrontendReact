@@ -22,12 +22,13 @@ class RootModal extends Component {
 
   render() {
     const { modalType, modalProps } = this.props
-    console.log('modalType', modalType, 'modalProps', modalProps)
-    if (typeof modalType === undefined || !modalType) return null
+
+    if (typeof modalType === 'undefined' || !modalType) return null
+
     const ActiveModal = MODAL_COMPONENTS[modalType]
-    console.log('active modal', ActiveModal)
+
     return (
-      <ActiveModal {...modalProps} />
+      <div className='modal-container'><ActiveModal {...modalProps} /></div>
     )
   }
 }
