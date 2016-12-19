@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router';
-import './Header.scss';
+import './GfyHeader.scss';
 import headerData from './data';
+import { actions } from '../RootModal'
+import { connect } from 'react-redux'
 
 const MenuItem = ({
   text,
@@ -71,13 +73,14 @@ const SearchBar = () => (
 );
 
 const NotLoggedIn = ({
-  currentLocation
+  currentLocation, dispatch
 }) => (
   <span>
     <span className="big-screen">
       <a href={`https://gfycat.com/login?redirect_uri=${currentLocation}`}>
         <button className="login-button">Log In</button>
       </a>
+      {/*<button className="login-button" onClick={() => {dispatch(actions.openModal({modalType: 'LOGIN'}))}}>Log In</button>*/}
       <a href={`https://gfycat.com/signup?redirect_uri=${currentLocation}`}>
         <button className="signup-button">Sign Up</button>
       </a>
@@ -92,9 +95,13 @@ const NotLoggedIn = ({
   </span>
 );
 
-class Header extends React.Component {
-  constructor() {
-    super();
+class GfyHeader extends React.Component {
+  static propTypes = {
+    dispatch: React.PropTypes.func.isRequired
+  }
+
+  constructor(props) {
+    super(props);
     if (typeof window !== 'undefined') {
       this.currentLocation = window.location.href;
     } else {
@@ -115,6 +122,8 @@ class Header extends React.Component {
   }
 
   render() {
+    const { dispatch } = this.props
+
     return (
       <div className="header-container">
         <div className="left">
@@ -149,7 +158,7 @@ class Header extends React.Component {
           {
             this.username ?
             <UserMenuDropdown menuItems={headerData.userMenu} username={this.username} /> :
-            <NotLoggedIn currentLocation={this.currentLocation} />
+            <NotLoggedIn dispatch={dispatch} currentLocation={this.currentLocation} />
           }
         </div>
       </div>
@@ -157,4 +166,4 @@ class Header extends React.Component {
   }
 }
 
-export default Header;
+export default connect()(GfyHeader)

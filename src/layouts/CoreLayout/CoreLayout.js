@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
-import Header from '../../components/Header'
+//import Header from '../../components/Header'
+import GfyHeader from '../../components/GfyHeader'
 import RootModal from '../../components/RootModal'
 import Footer from '../../components/Footer'
 import '../../styles/core.scss'
@@ -15,7 +16,7 @@ class CoreLayout extends Component {
 
     return (
       <div className='core-layout-container'>
-        <Header />
+        <GfyHeader />
         <RootModal />
         <div className='component-container'>{children}</div>
         <Footer />

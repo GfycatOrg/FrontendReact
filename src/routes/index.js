@@ -2,7 +2,8 @@ import React from 'react'
 import { Route, IndexRoute } from 'react-router'
 import CoreLayout from '../layouts/CoreLayout'
 import Home from './Home'
-import Team from './Team'
+// import Team from './Team'
+import Team from './TeamPage'
 import AsyncExample from './AsyncExample'
 
 /**

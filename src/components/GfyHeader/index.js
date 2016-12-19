@@ -1,3 +1,3 @@
-import Header from './Header';
+import GfyHeader from './GfyHeader';
 
-export default Header;
+export default GfyHeader;

@@ -7,15 +7,15 @@ import './Header.scss'
 import { actions } from '../RootModal'
 
 class Header extends Component {
-  // static propTypes = {
-  //   store: PropTypes.object.isRequired
-  // }
+  static propTypes = {
+    dispatch: PropTypes.func.isRequired
+  }
+
   constructor(props) {
     super(props)
   }
 
   render() {
-    console.log('props', this.props)
     const { dispatch } = this.props
 
     return (

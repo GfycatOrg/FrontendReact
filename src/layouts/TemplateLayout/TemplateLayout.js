@@ -1,7 +1,3 @@
-//TODO: add compiler public path to use in link href
-// import '../../../config'
-const config = require('../../../config/project.config')
-
 const TemplateLayout = {
   htmlAttributes: { lang: 'en' },
   title: 'Gfycat',
@@ -17,7 +13,6 @@ const TemplateLayout = {
     // { rel: 'icon', type: 'image/png', sizes: '32x32', href: '' },
     // { rel: 'icon', type: 'image/png', sizes: '96x96', href: '' },
     // { rel: 'icon', type: 'image/png', sizes: '192x192', href: '' },
-
     { rel: 'canonical', href: 'https://gfycat.com' }
   ],
   script: [],
