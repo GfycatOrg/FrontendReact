@@ -1,7 +1,16 @@
 import React from 'react'
-import { renderToStaticMarkup } from 'react-dom/server'
+import { renderToString, renderToStaticMarkup } from 'react-dom/server'
 
-export const renderHtmlLayout = (head, body, resolverPayload = {}) => {
+export const renderHtmlLayout = (head, content, scripts, resolverPayload = {}) => {
+  const renderedContent = renderToString(<content />)
+  console.log('renderedcontent', content)
+  const body = [
+    <div key='body' id='root' dangerouslySetInnerHTML={{__html: renderedContent}} />,
+    scripts
+  ]
+
+  console.log('body', body)
+
   const html = React.createElement(
     'html',
     head.htmlAttributes.toComponent(),
@@ -13,16 +22,21 @@ export const renderHtmlLayout = (head, body, resolverPayload = {}) => {
       head.base.toComponent(),
       head.link.toComponent(),
       head.script.toComponent(),
-      head.style.toComponenet(),
+      head.style.toComponent(),
       React.createElement(
         'script',
         { dangerouslySetInnerHTML:
-          { __html: `__REACT_RESOLVER_PAYLOAD__=${JSON.stringify(resolverPayload)}` }
+          // { __html: `__REACT_RESOLVER_PAYLOAD__=${JSON.stringify(resolverPayload)}` }
+          { __html: `___INITIAL_STATE__=${JSON.stringify(resolverPayload)}` }
         }
-      ),
-      React.createElement('body', null, body)
+      )
+    ),
+    React.createElement(
+      'body',
+      null,
+      body
     )
   )
 
-  return '<!DOCTYPE html>' + html
+  return '<!DOCTYPE html>' + renderToStaticMarkup(html)
 }
