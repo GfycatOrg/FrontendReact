@@ -1,0 +1,16 @@
+<% site_name = node[:site_info][:name] %>
+<% dev = node[:site_info][:dev] %>
+
+module.exports = {
+  apps: [{
+    name: '<%= site_name %>',
+    script: 'npm',
+    <% if dev %>
+      args: '-- run start:sandbox',
+      watch: <%= dev %>,
+      ignore_watch: 'dist',
+    <% else %>
+      args: '-- run start:prod'
+    <% end %>
+  }]
+}

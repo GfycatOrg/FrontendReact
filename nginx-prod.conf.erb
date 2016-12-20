@@ -1,0 +1,194 @@
+    server {
+        listen       8080 default_server;
+        server_name  gfycat.com dev.gfycat.com; 
+	    server_tokens off;
+        #charset koi8-r;
+
+        #access_log  /var/log/nginx/host.access.log  main;
+	location ~ /sitemaps.xml {
+                return 302 https://assets.gfycat.com/sitemaps/sitemaps.xml;
+        }
+	location /oauth/authorize {
+                rewrite ^/oauth/authorize$ /oauth/authorize/index.html;
+        }
+
+    location /static {
+        proxy_pass http://localhost:3000;
+    }
+
+    location /team {
+        proxy_pass http://localhost:3000;
+    }
+
+        # redirect server error pages to the static page /40x.html
+
+            root   /usr/share/nginx/gfycat/web;
+            index  app.php;
+	    try_files $uri $uri/ /app.php?$query_string;
+
+        rewrite ^/app\.php/?(.*)$ /$1 permanent;
+
+        location /cajax/get/null {
+                deny all;
+        }
+
+	rewrite ^(.*)/detail/(.*)$ https://gfycat.com/$2 permanent;
+	
+	# Fix for bug with $canonical in our links
+        location ~ canonical {
+        	rewrite ^(.*)/search\/(.*)\$canonical\$canonical\$canonical\$canonical\$canonical\$canonical(.*)$ https://gfycat.com/gifs/search/$2 permanent;
+        	rewrite ^(.*)/search\/(.*)\$canonical\$canonical\$canonical\$canonical\$canonical(.*)$ https://gfycat.com/gifs/search/$2 permanent;
+        	rewrite ^(.*)/search\/(.*)\$canonical\$canonical\$canonical\$canonical(.*)$ https://gfycat.com/gifs/search/$2 permanent;
+        	rewrite ^(.*)/search\/(.*)\$canonical\$canonical\$canonical(.*)$ https://gfycat.com/gifs/search/$2 permanent;
+        	rewrite ^(.*)/search\/(.*)\$canonical\$canonical(.*)$ https://gfycat.com/gifs/search/$2 permanent;
+        	rewrite ^(.*)/search\/(.*)\$canonical(.*)$ https://gfycat.com/gifs/search/$2 permanent;
+        	rewrite ^ $uri permanent;
+        }
+
+        location / {
+#	         if ($request_method = 'OPTIONS') {
+#		        add_header 'Access-Control-Allow-Origin' '*';
+#		        add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+#		        #
+#		        # Custom headers and headers various browsers *should* be OK with but aren't
+#		        #
+#		        add_header 'Access-Control-Allow-Headers' 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type';
+#		        #
+#		        # Tell client that this pre-flight info is valid for 20 days
+#		        #
+#		        add_header 'Access-Control-Max-Age' 1728000;
+#		        add_header 'Content-Type' 'text/plain charset=UTF-8';
+#		        add_header 'Content-Length' 0;
+#		        return 204;
+#		     }
+#		     if ($request_method = 'GET') {
+			   add_header 'Vary' 'CloudFront-Is-Mobile-Viewer,CloudFront-Is-Desktop-Viewer,CloudFront-Is-Tablet-Viewer';
+     			   add_header 'Access-Control-Allow-Origin' '*';
+     			   add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+     			   add_header 'Access-Control-Allow-Headers' 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type';
+#			}
+
+            index app;
+            try_files $uri @rewriteapp;
+        }
+
+        location ~ /\.  { return 403; }
+
+          location @rewriteapp {
+            rewrite ^(.*)$ /app.php/$1 last;
+          }
+
+        location /favicon.ico {
+          expires max;      
+        }
+
+        location /apple-app-site-association {
+		default_type application/json;
+        }
+
+        #
+        error_page  404              /404.html;
+        location = /40x.html {
+        }
+
+        # redirect server error pages to the static page /50x.html
+        #
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+        }
+
+        # proxy the PHP scripts to Apache listening on 127.0.0.1:80
+        #
+        #location ~ \.php$ {
+        #    proxy_pass   http://127.0.0.1;
+        #}
+
+        # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+        #
+        #location ~ ^/(app_dev|app)\.php$ { 
+        location ~ \.php {
+	    add_header 'Vary' 'CloudFront-Is-Mobile-Viewer,CloudFront-Is-Desktop-Viewer,CloudFront-Is-Tablet-Viewer';
+        #    root           html;
+            #fastcgi_pass   unix:/var/run/php-fpm/php-fpm.sock;
+            fastcgi_pass 127.0.0.1:9000;
+        #     fastcgi_index  index.php;
+            fastcgi_split_path_info ^(.+\.php)(/.*)$;
+            fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+            include        fastcgi_params;
+            fastcgi_param HTTPS off;
+        }
+        location = / {
+                        set $prerender 0;
+                        if ($args ~ "_escaped_fragment_") {
+                            set $prerender 1;
+                        }
+                        if ($http_user_agent ~ "Prerender") {
+                            set $prerender 0;
+                        }
+                        if ($uri ~ "\.(js|css|xml|less|png|jpg|jpeg|gif|pdf|doc|txt|ico|rss|zip|mp3|rar|exe|wmv|doc|avi|ppt|mpg|mpeg|tif|wav|mov|psd|ai|xls|mp4|m4a|swf|dat|dmg|iso|flv|m4v|torrent|ttf|woff)") {
+                            set $prerender 0;
+                        }
+
+                        #resolve using Google's DNS server to force DNS resolution and prevent caching of IPs
+                        resolver 8.8.8.8;
+
+                        if ($prerender = 1) {
+                            #setting prerender as a variable forces DNS resolution since nginx caches IPs and doesnt play well with load balancing
+                            set $prerender "<%= node[:prerender_elb_dns] %>:3000";
+                            rewrite .* /https://gfycat.com$request_uri? break;
+                            proxy_pass http://$prerender;
+                        }
+                        #if ($prerender = 0) {
+                        #    try_files $uri @rewriteapp;
+                        #    #rewrite ^(.*)$ /app_staging.php/$1 last;
+                        #}
+
+                        try_files $uri @rewriteapp;
+        }
+        location ~ /(gifs\/search\/|tag\/|@)(.*)$ {
+                        set $prerender 0;
+                        if ($args ~ "_escaped_fragment_") {
+                            set $prerender 1;
+                        }
+                        if ($http_user_agent ~ "Prerender") {
+                            set $prerender 0;
+                        }
+                        if ($uri ~ "\.(js|css|xml|less|png|jpg|jpeg|gif|pdf|doc|txt|ico|rss|zip|mp3|rar|exe|wmv|doc|avi|ppt|mpg|mpeg|tif|wav|mov|psd|ai|xls|mp4|m4a|swf|dat|dmg|iso|flv|m4v|torrent|ttf|woff)") {
+                            set $prerender 0;
+                        }
+                        if ($uri ~ "/detail/") {
+                            set $prerender 0;
+                        }
+
+                        #resolve using Google's DNS server to force DNS resolution and prevent caching of IPs
+                        resolver 8.8.8.8;
+
+                        if ($prerender = 1) {
+                            #setting prerender as a variable forces DNS resolution since nginx caches IPs and doesnt play well with load balancing
+                            set $prerender "<%= node[:prerender_elb_dns] %>:3000";
+                            rewrite .* /https://gfycat.com$uri_lowercase? break;
+                            proxy_pass http://$prerender;
+                        }
+                        #if ($prerender = 0) {
+                        #    try_files $uri @rewriteapp;
+                        #    #rewrite ^(.*)$ /app_staging.php/$1 last;
+                        #}
+
+                        try_files $uri @rewriteapp;
+        }
+        # deny access to .htaccess files, if Apache's document root
+        # concurs with nginx's one
+        #
+        #location ~ /\.ht {
+        #    deny  all;
+        #}
+	location ~ /\.  { return 403; }
+    }
+
+    server {
+        listen 8080;
+        server_name www.gfycat.com;
+        # $scheme will get the http protocol
+        # and 301 is best practice for tablet, phone, desktop and seo
+        return 301 https://gfycat.com$request_uri;
+    }

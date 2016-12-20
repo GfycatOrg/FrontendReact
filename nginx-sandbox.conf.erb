@@ -1,0 +1,85 @@
+<% site_name = node[:site_info][:name] %>
+server {
+    listen 8080;
+    server_name <%= site_name %>.sb.gfycat.com www.<%= site_name %>.sb.gfycat.com;
+    root /usr/share/nginx/<%= site_name %>/web;
+
+    index  app_dev.php;
+    try_files $uri $uri/ /app_dev.php?$query_string;
+
+    charset utf-8;
+    rewrite ^/app_dev\.php/?(.*)$ /$1 permanent;
+
+    location /oauth/authorize {
+        rewrite /oauth/authorize?$ /oauth/authorize/index.html last;
+    }
+
+    location /static {
+        proxy_pass http://unix:/usr/share/gfy/frontendreact/<%= site_name %>/server.sock;
+    }
+
+    location /team {
+        proxy_pass http://unix:/usr/share/gfy/frontendreact/<%= site_name %>/server.sock;
+    }
+
+    location / {
+        add_header 'Vary' 'CloudFront-Is-Mobile-Viewer,CloudFront-Is-Desktop-Viewer,CloudFront-Is-Tablet-Viewer,CloudFront-Viewer-Country';
+        add_header 'Access-Control-Allow-Origin' '*';
+        index app;
+        try_files $uri @rewriteapp;
+    }
+
+    location ~ /\.  { return 403; }
+
+    location @rewriteapp {
+        set $prerender 0;
+        if ($args ~ "_escaped_fragment_") {
+            set $prerender 1;
+        }
+        if ($http_user_agent ~ "Prerender") {
+            set $prerender 0;
+        }
+        if ($uri ~ "\.(js|css|xml|less|png|jpg|jpeg|gif|pdf|doc|txt|ico|rss|zip|mp3|rar|exe|wmv|doc|avi|ppt|mpg|mpeg|tif|wav|mov|psd|ai|xls|mp4|m4a|swf|dat|dmg|iso|flv|m4v|torrent|ttf|woff)") {
+            set $prerender 0;
+        }
+
+        #resolve using Google's DNS server to force DNS resolution and prevent caching of IPs
+        resolver 8.8.8.8;
+
+        if ($prerender = 1) {
+
+            #setting prerender as a variable forces DNS resolution since nginx caches IPs and doesnt play well with load balancing
+            set $prerender "172.30.0.31";
+            rewrite .* /$scheme://$host$request_uri? break;
+            proxy_pass http://$prerender;
+        }
+        if ($prerender = 0) {
+            rewrite ^(.*)$ /app_dev.php/$1 last;
+        }
+    }
+
+    access_log /var/log/nginx/<%= site_name %>-access.log;
+    error_log  /var/log/nginx/<%= site_name %>-error.log;
+
+    error_page  404              /404.html;
+    location = /40x.html {
+    }
+
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+    }
+
+    location ~ \.php {
+        fastcgi_pass 127.0.0.1:9000;
+        fastcgi_param COUNTRY "$geoip_country_name";
+        fastcgi_param CITY "$geoip_city";
+        fastcgi_param SYMFONY__GEO_COUNTRY "$geoip_country_name";
+        fastcgi_split_path_info ^(.+\.php)(/.*)$;
+        fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+        include        fastcgi_params;
+        fastcgi_param HTTPS off;
+    }
+
+    location ~ /\.  { return 403; }
+
+}
