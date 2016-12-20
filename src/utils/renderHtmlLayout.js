@@ -3,13 +3,10 @@ import { renderToString, renderToStaticMarkup } from 'react-dom/server'
 
 export const renderHtmlLayout = (head, content, scripts, resolverPayload = {}) => {
   const renderedContent = renderToString(<content />)
-  console.log('renderedcontent', content)
   const body = [
     <div key='body' id='root' dangerouslySetInnerHTML={{__html: renderedContent}} />,
     scripts
   ]
-
-  console.log('body', body)
 
   const html = React.createElement(
     'html',

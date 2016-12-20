@@ -54,8 +54,6 @@ const renderPage = (history, store, renderProps, routes) => {
       <script key='clientBundle' type='text/javascript' src='/static/bundle.js' />
     ]
 
-    console.log('scripts', scripts)
-
     // return renderHtmlLayout(head, [body, ...scripts])
     return renderHtmlLayout(head, content, scripts, store.getState())//data)
   })

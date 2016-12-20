@@ -6,7 +6,6 @@ import { loadState, setState } from './localStorage'
 
 const configureStore = (history) => {
   // const persistedState = loadState()
-  if (typeof window !== 'undefined') console.log('window', window)
   const persistedState = typeof window !== 'undefined' && window ? window.___INITIAL_STATE__ : loadState()
   const store = createStore(persistedState, history)
 
